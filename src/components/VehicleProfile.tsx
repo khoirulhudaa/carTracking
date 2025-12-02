@@ -1,11 +1,37 @@
 import { Calendar, FileText, MapPin, X } from 'lucide-react';
-import DriverInfo from './DriverInfo';
+import { useState } from 'react';
+import Devices from './Devices';
+import Drivers from './Drivers';
+import Events from './Events';
 import GaugeChart from './GaugeChart';
-import Local3DViewer, { default as ThreeDModel } from './modelViewer';
+import Logs from './Logs';
+import Local3DViewer from './modelViewer';
+import Sensors from './Sensors';
+import Trips from './Trips';
 
-function VehicleProfile() {
+ const RenderContent = ({activeTab}: {activeTab: string}) => {
+    switch (activeTab) {
+      case 'trips':
+        return <Trips />;
+      case 'events':
+        return <Events />;
+      case 'drivers':
+        return <Drivers />;
+      case 'sensors':
+        return <Sensors />;
+      case 'devices':
+        return <Devices />;
+      case 'logs':
+        return <Logs />;
+      default:
+        return <Trips />;
+    }
+  };
+
+const VehicleProfile = () => {
+
   return (
-    <div className="bg-white rounded-xl shadow-sm">
+    <div className="bg-white rounded-xl shadow-sm h-full">
       <div className="p-6 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <div>
@@ -50,33 +76,6 @@ function VehicleProfile() {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="border-t border-gray-200">
-        <div className="flex border-b border-gray-200">
-          <button className="px-6 py-3 text-sm font-medium text-blue-600 border-b-2 border-blue-600">
-            Dashboard
-          </button>
-          <button className="px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700">
-            Trips
-          </button>
-          <button className="px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700">
-            Events
-          </button>
-          <button className="px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700">
-            Drivers
-          </button>
-          <button className="px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700">
-            Sensors
-          </button>
-          <button className="px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700">
-            Devices
-          </button>
-          <button className="px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700">
-            Logs
-          </button>
-        </div>
-        <DriverInfo />
       </div>
     </div>
   );

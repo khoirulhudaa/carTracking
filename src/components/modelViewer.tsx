@@ -54,7 +54,7 @@ const Local3DViewer: React.FC<Local3DViewerProps> = ({
   modelName,
   scale = 1,
   enableZoom = true,
-  height = "380px",
+  height = "510px",
 }) => {
   const modelPath = `/assets/${modelName}`;
 

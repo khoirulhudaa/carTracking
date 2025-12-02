@@ -3,7 +3,7 @@ interface GaugeChartProps {
   value: number;
   max?: number;
   unit?: string;
-  color?: 'red' | 'blue' | 'orange';
+  color?: 'red' | 'blue' | 'orange' | 'emerald';
 }
 
 function GaugeChart({ label, value, max = 100, unit = '%', color = 'blue' }: GaugeChartProps) {
@@ -14,12 +14,14 @@ function GaugeChart({ label, value, max = 100, unit = '%', color = 'blue' }: Gau
     red: 'text-red-500',
     blue: 'text-blue-500',
     orange: 'text-orange-500',
+    emerald: 'text-emerald-500',
   };
 
   const strokeColors = {
     red: '#ef4444',
     blue: '#3b82f6',
     orange: '#f97316',
+    emerald: '#f97316',
   };
 
   return (
