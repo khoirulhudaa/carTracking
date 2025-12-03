@@ -1,5 +1,5 @@
 import { Calendar, FileText, MapPin, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Devices from './Devices';
 import Drivers from './Drivers';
 import Events from './Events';
@@ -30,6 +30,15 @@ import Trips from './Trips';
 
 const VehicleProfile = () => {
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div className="bg-white rounded-xl shadow-sm h-full">
       <div className="p-6 border-b border-gray-200">
@@ -50,8 +59,11 @@ const VehicleProfile = () => {
           <GaugeChart label="Fuel" value={157} max={200} unit="km" color="blue" />
           <GaugeChart label="Battery" value={8} color="orange" />
         </div>
-        <Local3DViewer modelName="lexus.glb" scale={100} rotationSpeed={0.8} />
-
+        <Local3DViewer 
+          modelName="lexus.glb" 
+          scale={isMobile ? 80 : 100} 
+          height={isMobile ? "360px" : "510px"}
+        />
         <div className="relative">
           <div className="absolute shadow-sm w-max gap-20 mx-auto border bg-white rounded-lg py-3 px-7 bottom-4 left-0 right-0 flex justify-around text-center">
             <div>

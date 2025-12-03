@@ -32,9 +32,6 @@ const LocalModel: React.FC<{
   // ROTASI AWAL 90° — DEPAN MOBIL LANGSUNG KELIHATAN
   React.useLayoutEffect(() => {
     scene.rotation.y = Math.PI / 2;     // 90° ke kiri → paling sering cocok untuk mobil
-    // Kalau kurang pas, coba ganti jadi:
-    // scene.rotation.y = -Math.PI / 2; // 90° ke kanan
-    // scene.rotation.y = Math.PI;      // 180° (belakang)
   }, [scene]);
 
   return <primitive ref={ref} object={scene} scale={scale} />;
@@ -53,7 +50,6 @@ interface Local3DViewerProps {
 const Local3DViewer: React.FC<Local3DViewerProps> = ({
   modelName,
   scale = 1,
-  enableZoom = true,
   height = "510px",
 }) => {
   const modelPath = `/assets/${modelName}`;
