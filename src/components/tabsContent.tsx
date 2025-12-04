@@ -57,7 +57,7 @@ const TabsContent = () => {
 
           <button
             onClick={() => setActiveTab('drivers')}
-            className={`w-full px-6 py-3 text-sm font-medium transition-colors ${
+            className={`md:flex hidden w-full px-6 py-3 text-sm font-medium transition-colors ${
               activeTab === 'drivers'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-500 hover:text-gray-800'
@@ -68,7 +68,7 @@ const TabsContent = () => {
 
           <button
             onClick={() => setActiveTab('sensors')}
-            className={`w-full px-6 py-3 text-sm font-medium transition-colors ${
+            className={`md:flex hidden w-full px-6 py-3 text-sm font-medium transition-colors ${
               activeTab === 'sensors'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-500 hover:text-gray-800'
@@ -79,7 +79,7 @@ const TabsContent = () => {
 
           <button
             onClick={() => setActiveTab('devices')}
-            className={`w-full px-6 py-3 text-sm font-medium transition-colors ${
+            className={`md:flex hidden w-full px-6 py-3 text-sm font-medium transition-colors ${
               activeTab === 'devices'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-500 hover:text-gray-800'
@@ -90,7 +90,7 @@ const TabsContent = () => {
 
           <button
             onClick={() => setActiveTab('logs')}
-            className={`w-full px-6 py-3 text-sm font-medium transition-colors ${
+            className={`md:flex hidden w-full px-6 py-3 text-sm font-medium transition-colors ${
               activeTab === 'logs'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-500 hover:text-gray-800'
@@ -99,7 +99,7 @@ const TabsContent = () => {
             Logs
           </button>
         </div>
-        <div className='w-full h-max p-7'>
+        <div className='w-full h-max p-2.5 md:p-7'>
           <RenderContent activeTab={activeTab} />
         </div>
       </div>

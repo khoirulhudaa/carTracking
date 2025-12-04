@@ -77,9 +77,9 @@ function Events() {
   return (
     <div className="min-h-screen bg-white rounded-xl py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
-        <div className="flex items-center justify-between">
+        <div className="md:flex items-center justify-between">
           <h1 className="text-3xl font-bold text-gray-800">Events Data</h1>
-          <div className="flex items-center space-x-3">
+          <div className="flex md:mt-0 mt-4 items-center space-x-3">
             <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
               <option>All Severity</option>
               <option>Critical</option>

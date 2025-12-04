@@ -1,32 +1,7 @@
 import { Calendar, FileText, MapPin, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import Devices from './Devices';
-import Drivers from './Drivers';
-import Events from './Events';
 import GaugeChart from './GaugeChart';
-import Logs from './Logs';
 import Local3DViewer from './modelViewer';
-import Sensors from './Sensors';
-import Trips from './Trips';
-
- const RenderContent = ({activeTab}: {activeTab: string}) => {
-    switch (activeTab) {
-      case 'trips':
-        return <Trips />;
-      case 'events':
-        return <Events />;
-      case 'drivers':
-        return <Drivers />;
-      case 'sensors':
-        return <Sensors />;
-      case 'devices':
-        return <Devices />;
-      case 'logs':
-        return <Logs />;
-      default:
-        return <Trips />;
-    }
-  };
 
 const VehicleProfile = () => {
 
