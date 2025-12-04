@@ -1,25 +1,30 @@
-import { Eye, EyeOff, Lock, Mail, Truck } from 'lucide-react';
+import { Car, Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Login() {
+// Di dalam file Signup.tsx
+interface SignupProps {
+  onNavigateToRegister: () => void;
+}
+
+export default function Login({ onNavigateToRegister }: SignupProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full">
+    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center px-4">
+      <div className="w-full md:w-[35vw]">
         {/* Logo + Title */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4 shadow-lg">
-            <Truck className="w-10 h-10 text-white" />
-          </div>
-          <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
-          <p className="text-gray-600 mt-2">Log in to your fleet management dashboard</p>
-        </div>
 
         {/* Login Card */}
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+            <div className="text-center flex items-center justify-start gap-4 mb-8">
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-blue-600 rounded-xl shadow-lg">
+                    <Car className="w-8 h-8 text-white" />
+                </div>
+                <h1 className="text-2xl font-bold text-gray-900">Welcome Back</h1>
+                {/* <p className="text-gray-600 mt-2">Log in to your fleet management dashboard</p> */}
+            </div>
           <form className="space-y-6">
             {/* Email */}
             <div>
@@ -93,17 +98,12 @@ export default function Login() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{' '}
-              <a href="/signup" className="font-semibold text-blue-600 hover:text-blue-700">
+              <p onClick={onNavigateToRegister} className="cursor-pointer font-semibold text-blue-600 hover:text-blue-700">
                 Sign up
-              </a>
+              </p>
             </p>
           </div>
         </div>
-
-        {/* Footer */}
-        <p className="text-center text-xs text-gray-500 mt-8">
-          © 2025 FleetTrack Pro. All rights reserved.
-        </p>
       </div>
     </div>
   );

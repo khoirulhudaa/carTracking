@@ -85,9 +85,9 @@ function Dashboard() {
       case 'settings':
         return <SettingsPage />;
       case 'login':
-        return <Login />;
+      return <Login onNavigateToRegister={() => setActivePage('register')} />;
       case 'register':
-        return <Signup />;
+        return <Signup onNavigateToLogin={() => setActivePage('login')} />;
       default:
         return <VehicleProfile />;
     }
@@ -137,6 +137,7 @@ function Dashboard() {
       settings: 'Settings',
       profile: 'Profile Saya',
       login: 'Login',
+      register: 'SignUp',
     };
 
     const currentTitle = pageTitles[activePage] || 'Dashboard';
@@ -262,90 +263,96 @@ function Dashboard() {
   }
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Desktop Sidebar */}
-      <div className="hidden lg:block">
-        <Sidebar activePage={activePage} onPageChange={setActivePage} />
-      </div>
-
-      {/* Mobile Drawer Sidebar */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black bg-opacity-50"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          {/* Drawer */}
-          <div className="absolute left-0 top-0 h-full w-screen bg-white shadow-xl">
-            <div className="flex items-center justify-between p-6 border-b">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-                  <Navigation className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold text-gray-800">Truckly</span>
-              </div>
-              <button onClick={() => setMobileMenuOpen(false)}>
-                <X className="w-6 h-6 text-gray-600" />
-              </button>
-            </div>
-            <Sidebar activePage={activePage} onPageChange={(page) => {
-              setActivePage(page);
-              setMobileMenuOpen(false);
-            }} />
-          </div>
+  <div className="flex h-screen bg-gray-100">
+    {/* ==== TAMPILKAN LAYOUT HANYA JIKA BUKAN LOGIN / REGISTER ==== */}
+    {activePage !== 'login' && activePage !== 'register' ? (
+      <>
+        {/* Desktop Sidebar */}
+        <div className="hidden lg:block">
+          <Sidebar activePage={activePage} onPageChange={setActivePage} />
         </div>
-      )}
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Header dengan hamburger di mobile */}
-        <Header 
-          onMobileMenuToggle={() => setMobileMenuOpen(true)} 
-          setActivePage={setActivePage}   // ← tambahkan ini
-          activePage={activePage}
-        />
-
-        {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6">
-          {renderPage()}
-        </main>
-
-        {/* Bottom Navigation (Mobile only) */}
-        <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
-          <div className="grid grid-cols-5 gap-1 py-2">
-            {[
-              { id: 'map', icon: Map, label: 'Map' },
-              { id: 'assets', icon: Package, label: 'Assets' },
-              { id: 'trips', icon: BarChart3, label: 'Trips' },
-              { id: 'events', icon: AlertCircle, label: 'Events' },
-              { id: 'drivers', icon: Users, label: 'Drivers' },
-            ].map((item) => {
-              const Icon = item.icon;
-              const isActive = activePage === item.id;
-              // const isDisabled = ['drivers'].includes(item.id); // contoh disabled
-
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => setActivePage(item.id)}
-                  // disabled={isDisabled}
-                  className={`flex flex-col items-center py-2 px-1 ${
-                    isActive
-                      ? 'text-blue-600'
-                      : 'text-gray-600'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="text-xs mt-1">{item.label}</span>
+        {/* Mobile Drawer Sidebar */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-50 lg:hidden">
+            <div
+              className="absolute inset-0 bg-black bg-opacity-50"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="absolute left-0 top-0 h-full w-screen bg-white shadow-xl">
+              <div className="flex items-center justify-between p-6 border-b">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+                    <Navigation className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-xl font-bold text-gray-800">Truckly</span>
+                </div>
+                <button onClick={() => setMobileMenuOpen(false)}>
+                  <X className="w-6 h-6 text-gray-600" />
                 </button>
-              );
-            })}
+              </div>
+              <Sidebar
+                activePage={activePage}
+                onPageChange={(page) => {
+                  setActivePage(page);
+                  setMobileMenuOpen(false);
+                }}
+              />
+            </div>
           </div>
-        </nav>
+        )}
+
+        {/* Main Content dengan Header */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <Header
+            onMobileMenuToggle={() => setMobileMenuOpen(true)}
+            setActivePage={setActivePage}
+            activePage={activePage}
+          />
+
+          {/* Page Content */}
+          <main className="flex-1 overflow-y-auto p-4 sm:p-6 bg-gray-50">
+            {renderPage()}
+          </main>
+
+          {/* Bottom Navigation (Mobile only) */}
+          <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40">
+            <div className="grid grid-cols-5 gap-1 py-2">
+              {[
+                { id: 'map', icon: Map, label: 'Map' },
+                { id: 'assets', icon: Package, label: 'Assets' },
+                { id: 'trips', icon: BarChart3, label: 'Trips' },
+                { id: 'events', icon: AlertCircle, label: 'Events' },
+                { id: 'drivers', icon: Users, label: 'Drivers' },
+              ].map((item) => {
+                const Icon = item.icon;
+                const isActive = activePage === item.id;
+
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActivePage(item.id)}
+                    className={`flex flex-col items-center py-2 px-1 ${
+                      isActive ? 'text-blue-600' : 'text-gray-600'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span className="text-xs mt-1">{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </nav>
+        </div>
+      </>
+    ) : (
+      /* ==== TAMPILKAN HANYA KONTEN LOGIN / REGISTER TANPA LAYOUT ==== */
+      <div className="flex-1 flex items-center justify-center bg-gray-50">
+        {renderPage()}
       </div>
-    </div>
-  );
+    )}
+  </div>
+);
 }
 
 export default Dashboard;

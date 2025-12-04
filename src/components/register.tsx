@@ -1,7 +1,11 @@
 import { Building, Eye, EyeOff, Lock, Mail, Truck, User } from 'lucide-react';
 import React, { useState } from 'react';
 
-export default function Signup() {
+interface SignupProps {
+  onNavigateToLogin: () => void;
+}
+
+export default function SignUp({ onNavigateToLogin }: SignupProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -15,137 +19,136 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full">
-        {/* Logo + Title */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4 shadow-lg">
-            <Truck className="w-10 h-10 text-white" />
-          </div>
-          <h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
-          <p className="text-gray-600 mt-2">Start managing your fleet in minutes</p>
-        </div>
+    <div className="h-screen w-screen overflow-auto md:overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4">
+      <div className="w-full md:max-w-[70vw] grid lg:grid-cols-2 gap-16 items-center">
 
-        {/* Signup Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-          <form className="space-y-5">
-            {/* Full Name */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Full Name
-              </label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                  placeholder="John Doe"
-                />
+        {/* LEFT: Minimal Branding */}
+        <div className="hidden lg:flex flex-col justify-center">
+          <div className="space-y-12">
+            {/* Logo + Name */}
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center">
+                <Truck className="w-10 h-10 text-white" />
               </div>
+              <h1 className="text-4xl font-bold text-gray-900">Carly</h1>
             </div>
 
-            {/* Company Name */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Company Name
-              </label>
-              <div className="relative">
-                <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                  placeholder="ABC Logistics"
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                  placeholder="fleet@company.com"
-                />
-              </div>
-            </div>
-
-            {/* Password */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                  placeholder="Create a strong password"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-            </div>
-
-            {/* Terms */}
-            <div className="flex items-start gap-3">
-              <input type="checkbox" className="mt-1 w-4 h-4 text-blue-600 rounded" />
-              <p className="text-xs text-gray-600">
-                I agree to the{' '}
-                <a href="#" className="text-blue-600 hover:underline">
-                  Terms of Service
-                </a>{' '}
-                and{' '}
-                <a href="#" className="text-blue-600 hover:underline">
-                  Privacy Policy
-                </a>
+            {/* Tagline */}
+            <div className="max-w-md">
+              <h2 className="text-4xl font-bold text-gray-800 leading-tight">
+                Fleet management,
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"> simplified.</span>
+              </h2>
+              <p className="mt-4 text-lg text-gray-600">
+                One platform. Full control. Zero complexity.
               </p>
             </div>
 
-            {/* Submit */}
-            <button
-              type="submit"
-              className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5"
-            >
-              Create Account
-            </button>
-          </form>
-
-          {/* Login Link */}
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
-              Already have an account?{' '}
-              <a href="/login" className="font-semibold text-blue-600 hover:text-blue-700">
-                Sign in
-              </a>
-            </p>
+            {/* Soft decorative element */}
+            <div className="relative">
+              <div className="absolute inset-0 blur-3xl opacity-30">
+                <div className="w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+                <div className="absolute top-20 left-40 w-80 h-80 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-2000"></div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <p className="text-center text-xs text-gray-500 mt-8">
-          © 2025 FleetTrack Pro. All rights reserved.
-        </p>
+        {/* RIGHT: Clean Form */}
+        <div className="w-full md:max-w-md mx-auto">
+          <div className="bg-white/80 backdrop-blur-xl shadow-sm md:shadow-lg rounded-3xl p-4 md:p-10 border border-white/20">
+
+            {/* Mobile Logo */}
+            <div className="flex lg:hidden justify-center mb-8">
+              <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center">
+                <Truck className="w-9 h-9 text-white" />
+              </div>
+            </div>
+
+            <h2 className="md:flex hidden text-3xl font-bold text-gray-900 text-center lg:text-left">
+              Welcome to Truckly
+            </h2>
+            <p className="mt-2 text-gray-600 text-center lg:text-left">
+              Create your account in seconds
+            </p>
+
+            <form className="mt-8 space-y-6">
+              <div className="space-y-5">
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Full name"
+                    className="w-full pl-12 pr-4 py-4 bg-gray-50/70 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition text-gray-800 placeholder-gray-500"
+                  />
+                </div>
+
+                <div className="relative">
+                  <Building className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Company name"
+                    className="w-full pl-12 pr-4 py-4 bg-gray-50/70 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition placeholder-gray-500"
+                  />
+                </div>
+
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email address"
+                    className="w-full pl-12 pr-4 py-4 bg-gray-50/70 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition placeholder-gray-500"
+                  />
+                </div>
+
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="Create password"
+                    className="w-full pl-12 pr-14 py-4 bg-gray-50/70 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition placeholder-gray-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-2xl hover:shadow-xl transition transform hover:-translate-y-1"
+              >
+                Create Account
+              </button>
+            </form>
+
+            <p className="mt-8 text-center text-sm text-gray-600">
+              Already have an account?{' '}
+              <button
+                onClick={onNavigateToLogin}
+                className="font-semibold text-blue-600 hover:text-blue-700 transition"
+              >
+                Sign in
+              </button>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
