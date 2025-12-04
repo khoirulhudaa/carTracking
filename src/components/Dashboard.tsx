@@ -108,7 +108,7 @@ import Trips from './Trips';
 import VehicleProfile from './VehicleProfile';
 
 function Dashboard() {
-  const [activePage, setActivePage] = useState('assets');
+  const [activePage, setActivePage] = useState('map');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const renderPage = () => {

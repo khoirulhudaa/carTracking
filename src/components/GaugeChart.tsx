@@ -26,7 +26,7 @@ function GaugeChart({ label, value, max = 100, unit = '%', color = 'blue' }: Gau
 
   return (
     <div className="text-center">
-      <div className="relative w-32 h-20 mx-auto mb-2">
+      <div className="relative w-30 md:w-32 h-20 mx-2 md:mx-auto mb-2">
         <svg viewBox="0 0 100 60" className="w-full h-full">
           <path
             d="M 10 50 A 40 40 0 0 1 90 50"
@@ -56,7 +56,7 @@ function GaugeChart({ label, value, max = 100, unit = '%', color = 'blue' }: Gau
           <circle cx="50" cy="50" r="3" fill="#374151" />
         </svg>
         <div className="absolute inset-0 flex items-end justify-center pb-1">
-          <span className={`text-2xl font-bold ${colorClasses[color]}`}>
+          <span className={`text-xl md:text-2xl font-bold ${colorClasses[color]}`}>
             {value}{unit === 'km' ? '' : unit}
           </span>
         </div>

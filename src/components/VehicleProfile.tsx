@@ -62,26 +62,25 @@ const VehicleProfile = () => {
         <Local3DViewer 
           modelName="lexus.glb" 
           scale={isMobile ? 80 : 100} 
-          height={isMobile ? "360px" : "510px"}
         />
         <div className="relative">
-          <div className="absolute shadow-sm w-max gap-20 mx-auto border bg-white rounded-lg py-3 px-7 bottom-4 left-0 right-0 flex justify-around text-center">
-            <div>
+          <div className="relative md:absolute shadow-sm space-y-12 md:py-3 py-10 md:space-y-0 w-full md:w-max gap-20 mx-auto border rounded-lg px-7 bottom-4 left-0 right-0 md:flex justify-around text-center">
+            <div className='w-full md:pb-0 pb-4 border-b md:border-0'>
               <MapPin className="w-4 h-4 text-gray-400 mx-auto mb-1" />
               <p className="text-2xl font-bold text-gray-800">25 psi</p>
               <p className="text-xs text-gray-500">FL</p>
             </div>
-            <div>
+            <div className='w-full md:pb-0 pb-4 border-b md:border-0'>
               <MapPin className="w-4 h-4 text-gray-400 mx-auto mb-1" />
               <p className="text-2xl font-bold text-gray-800">26 psi</p>
               <p className="text-xs text-gray-500">FR</p>
             </div>
-            <div>
+            <div className='w-full md:pb-0 pb-4 border-b md:border-0'>
               <Calendar className="w-4 h-4 text-gray-400 mx-auto mb-1" />
               <p className="text-2xl font-bold text-gray-800">25 psi</p>
               <p className="text-xs text-gray-500">RL</p>
             </div>
-            <div>
+            <div className='w-full md:pb-0 pb-4 border-b md:border-0'>
               <FileText className="w-4 h-4 text-gray-400 mx-auto mb-1" />
               <p className="text-2xl font-bold text-gray-800">13 psi</p>
               <p className="text-xs text-gray-500">RR</p>

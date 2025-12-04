@@ -75,64 +75,66 @@ function Events() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-800">Events</h1>
-        <div className="flex items-center space-x-3">
-          <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-            <option>All Severity</option>
-            <option>Critical</option>
-            <option>Warning</option>
-            <option>Info</option>
-          </select>
-          <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-            <option>Last 24 Hours</option>
-            <option>Last 7 Days</option>
-            <option>Last 30 Days</option>
-          </select>
+    <div className="min-h-screen bg-white rounded-xl py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-gray-800">Events Data</h1>
+          <div className="flex items-center space-x-3">
+            <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+              <option>All Severity</option>
+              <option>Critical</option>
+              <option>Warning</option>
+              <option>Info</option>
+            </select>
+            <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+              <option>Last 24 Hours</option>
+              <option>Last 7 Days</option>
+              <option>Last 30 Days</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-      <div className="space-y-4">
-        {events.map((event) => (
-          <div key={event.id} className={`p-4 rounded-lg ${getSeverityBgColor(event.severity)} transition-all hover:shadow-md`}>
-            <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 mt-1">
-                {getSeverityIcon(event.severity)}
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-lg font-semibold text-gray-800">{event.type}</h3>
-                  <span className="text-xs text-gray-500 flex items-center space-x-1">
-                    <Clock className="w-3 h-3" />
-                    <span>{event.time}</span>
-                  </span>
+        <div className="space-y-4">
+          {events.map((event) => (
+            <div key={event.id} className={`p-4 rounded-lg ${getSeverityBgColor(event.severity)} transition-all hover:shadow-md`}>
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 mt-1">
+                  {getSeverityIcon(event.severity)}
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                  <div className="flex items-start space-x-2">
-                    <MapPin className="w-4 h-4 text-gray-400 mt-0.5" />
-                    <div>
-                      <p className="text-gray-600">Location</p>
-                      <p className="font-medium text-gray-800">{event.location}</p>
+                <div className="flex-1">
+                  <div className="flex items-center border-b md:pb-0 pb-4 md:border-0 justify-between mb-2">
+                    <h3 className="text-lg font-semibold text-gray-800">{event.type}</h3>
+                    <span className="text-xs text-gray-500 flex items-center space-x-1">
+                      <Clock className="w-3 h-3" />
+                      <span>{event.time}</span>
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-4 md:mt-0 mt-4 gap-4 text-sm">
+                    <div className="flex items-start md:space-x-2">
+                      <MapPin className="w-4 h-4 md:flex hidden text-gray-400 mt-0.5" />
+                      <div>
+                        <p className="text-gray-600">Location</p>
+                        <p className="font-medium text-gray-800">{event.location}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <p className="text-gray-600">Current Speed</p>
-                    <p className="font-medium text-gray-800">{event.speed}</p>
-                  </div>
-                  <div>
-                    <p className="text-gray-600">Speed Limit</p>
-                    <p className="font-medium text-gray-800">{event.limit}</p>
-                  </div>
-                  <div>
-                    <p className="text-gray-600">Driver</p>
-                    <p className="font-medium text-gray-800">{event.driver}</p>
+                    <div>
+                      <p className="text-gray-600">Current Speed</p>
+                      <p className="font-medium text-gray-800">{event.speed}</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-600">Speed Limit</p>
+                      <p className="font-medium text-gray-800">{event.limit}</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-600">Driver</p>
+                      <p className="font-medium text-gray-800">{event.driver}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

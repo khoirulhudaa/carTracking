@@ -1,7 +1,7 @@
 // components/Local3DViewer.tsx
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Group } from "three";
 
 const LoadingSpinner = () => {
@@ -59,8 +59,17 @@ const Local3DViewer: React.FC<Local3DViewerProps> = ({
     useGLTF.preload(modelPath);
   }, [modelPath]);
 
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
-    <div className={`relative w-full rounded-2xl overflow-hidden border bg-black/40`} style={{ height }}>
+    <div className={`relative w-full md:flex hidden rounded-2xl overflow-hidden border bg-black/40 ${isMobile ? 'h-max' : 'h-[510px]'}`}>
       <Canvas camera={{ position: [0, 2, 8], fov: 50 }} className="bg-white">
         <color args={["#0f172a"]} />
         <ambientLight intensity={24} />

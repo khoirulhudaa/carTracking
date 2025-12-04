@@ -163,7 +163,7 @@ function MapOverview() {
 
   return (
     <div className="space-y-6 pb-20 lg:pb-6">
-      <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Map Overview</h1>
+      {/* <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Map Overview</h1> */}
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
