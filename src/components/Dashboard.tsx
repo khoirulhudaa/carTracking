@@ -1,14 +1,23 @@
-import { AlertCircle, BarChart3, Map, Menu, Navigation, Package, Users, X } from 'lucide-react';
+import { AlertCircle, BarChart3, ChevronDown, Globe, LogOut, Map, Menu, Navigation, Package, User, Users, X } from 'lucide-react';
 import { useState } from 'react';
 import ActivityChart from './ActivityChart';
 import Devices from './Devices';
 import Drivers from './Drivers';
+import EmergencyAlert from './emergency';
+import EngineTelemetry from './EngineTelemetry';
 import Events from './Events';
+import FuelManagement from './fuelManagement';
+import Login from './login';
 import Logs from './Logs';
 import MapOverview from './MapOverview';
+import AudioVideoMonitoring from './monitoring';
+import NotificationCenter from './notifications';
+import Signup from './register';
 import RemindersPanel from './RemindersPanel';
 import Reports from './Reports';
 import Sensors from './Sensors';
+import ServiceMaintenance from './serviceMaintenence';
+import SettingsPage from './setting';
 import Sidebar from './Sidebar';
 import TabsContent from './tabsContent';
 import TimeManagement from './TimeManagement';
@@ -59,10 +68,198 @@ function Dashboard() {
         return <Tools />;
       case 'reports':
         return <Reports />;
+      case 'maintenance':
+        return <ServiceMaintenance />;
+      case 'fuel':
+        return <FuelManagement />;
+      case 'tracking':
+        return <Reports />;
+      case 'telemetry':
+        return <EngineTelemetry />;
+      case 'monitoring':
+        return <AudioVideoMonitoring />;
+      case 'emergency':
+        return <EmergencyAlert />;
+      case 'notifications':
+        return <NotificationCenter />;
+      case 'settings':
+        return <SettingsPage />;
+      case 'login':
+        return <Login />;
+      case 'register':
+        return <Signup />;
       default:
         return <VehicleProfile />;
     }
   };
+
+  function Header({ 
+    onMobileMenuToggle,
+    setActivePage,
+    activePage          // TAMBAHKAN INI
+  }: { 
+    onMobileMenuToggle: () => void;
+    setActivePage: (page: string) => void;
+    activePage: string;                    // TAMBAHKAN TIPE
+  }) {
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+    const [currentLang, setCurrentLang] = useState<'id' | 'en'>('id');
+
+    const user = { name: 'Ahmad Fauzi', email: 'ahmad@company.co' };
+    const languages = [
+      { code: 'id', name: 'Indonesia', flag: 'ID' },
+      { code: 'en', name: 'English', flag: 'US' },
+    ];
+
+    const currentLanguage = languages.find(l => l.code === currentLang) || languages[0];
+
+    // MAP ID → Nama halaman yang rapi (bisa diatur sesuai keinginan)
+    const pageTitles: Record<string, string> = {
+      map: 'Map Overview',
+      assets: 'Assets Car',
+      trips: 'Trips Car',
+      events: 'My Events',
+      drivers: 'Drivers Data',
+      sensors: 'Sensors',
+      devices: 'Devices',
+      logs: 'Logs Driver',
+      time: 'Time Driver',
+      tools: 'Other Tools',
+      reports: 'Report Car',
+      maintenance: 'Maintenance',
+      fuel: 'Fuel Car',
+      tracking: 'Tracking',
+      telemetry: 'Engine Car',
+      monitoring: 'Audio/Video',
+      emergency: 'Emergency',
+      notifications: 'Notifications',
+      settings: 'Settings',
+      profile: 'Profile Saya',
+      login: 'Login',
+    };
+
+    const currentTitle = pageTitles[activePage] || 'Dashboard';
+
+    const getInitials = (name: string) => 
+      name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+    return (
+      <header className="bg-white border-b border-gray-200">
+        <div className="px-4 sm:px-6 py-4 flex items-center justify-between">
+
+          {/* Left: Hamburger + Judul Halaman */}
+          <div className="flex items-center gap-4 flex-1">
+            {/* Hamburger (mobile only) */}
+            <button onClick={onMobileMenuToggle} className="lg:hidden">
+              <Menu className="w-6 h-6 text-gray-700" />
+            </button>
+
+            {/* Judul Halaman Aktif */}
+            <h1 className="text-lg sm:text-xl font-semibold text-gray-900 truncate">
+              {currentTitle}
+            </h1>
+          </div>
+
+          {/* Right Side: Language + Profile */}
+          <div className="flex items-center space-x-1">
+
+            {/* Language Selector */}
+            <div className="relative">
+              <button
+                onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700"
+              >
+                <Globe className="w-5 h-5 text-gray-600" />
+                <span className="hidden sm:inline">{currentLanguage.name}</span>
+                <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isLanguageOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isLanguageOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setIsLanguageOpen(false)} />
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          setCurrentLang(lang.code as 'id' | 'en');
+                          setIsLanguageOpen(false);
+                        }}
+                        className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition ${
+                          currentLang === lang.code 
+                            ? 'bg-blue-50 text-blue-700 font-medium' 
+                            : 'text-gray-700 hover:bg-gray-50'
+                        }`}
+                      >
+                        <div className="w-6 h-4 rounded-sm overflow-hidden border border-gray-300">
+                          <div className={`w-full h-full flex items-center justify-center text-xs font-bold ${
+                            lang.flag === 'ID' ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'
+                          }`}>
+                            {lang.flag}
+                          </div>
+                        </div>
+                        <span>{lang.name}</span>
+                        {currentLang === lang.code && (
+                          <svg className="w-4 h-4 ml-auto text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Profile Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsProfileOpen(!isProfileOpen)}
+                className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition"
+              >
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                  {getInitials(user.name)}
+                </div>
+                <div className="text-left hidden sm:block">
+                  <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                </div>
+                <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isProfileOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setIsProfileOpen(false)} />
+                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">
+                    <div className="px-4 py-3 border-b border-gray-100">
+                      <p className="text-sm font-semibold">{user.name}</p>
+                      <p className="text-xs text-gray-500">{user.email}</p>
+                    </div>
+                    <div className="py-1">
+                      <button
+                        onClick={() => { setIsProfileOpen(false); setActivePage('profile'); }}
+                        className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3"
+                      >
+                        <User className="w-4 h-4" /> Profile Saya
+                      </button>
+                    </div>
+                    <div className="border-t border-gray-100 pt-1">
+                      <button
+                        onClick={() => { setIsProfileOpen(false); setActivePage('login'); }}
+                        className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 font-medium flex items-center gap-3"
+                      >
+                        <LogOut className="w-4 h-4" /> Keluar
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -103,20 +300,11 @@ function Dashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header dengan hamburger di mobile */}
-        <header className="bg-white shadow-sm border-b border-gray-200">
-          <div className="flex items-center justify-between px-4 py-4">
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden"
-            >
-              <Menu className="w-6 h-6 text-gray-700" />
-            </button>
-            <h2 className="text-xl font-semibold text-gray-800 capitalize">
-              {activePage === 'map' ? 'Map Overview' : activePage}
-            </h2>
-            <div className="w-10" /> {/* spacer */}
-          </div>
-        </header>
+        <Header 
+          onMobileMenuToggle={() => setMobileMenuOpen(true)} 
+          setActivePage={setActivePage}   // ← tambahkan ini
+          activePage={activePage}
+        />
 
         {/* Page Content */}
         <main className="flex-1 overflow-y-auto p-4 sm:p-6">
@@ -135,18 +323,16 @@ function Dashboard() {
             ].map((item) => {
               const Icon = item.icon;
               const isActive = activePage === item.id;
-              const isDisabled = ['drivers'].includes(item.id); // contoh disabled
+              // const isDisabled = ['drivers'].includes(item.id); // contoh disabled
 
               return (
                 <button
                   key={item.id}
-                  onClick={() => !isDisabled && setActivePage(item.id)}
-                  disabled={isDisabled}
+                  onClick={() => setActivePage(item.id)}
+                  // disabled={isDisabled}
                   className={`flex flex-col items-center py-2 px-1 ${
                     isActive
                       ? 'text-blue-600'
-                      : isDisabled
-                      ? 'text-gray-400'
                       : 'text-gray-600'
                   }`}
                 >

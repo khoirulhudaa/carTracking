@@ -1,15 +1,9 @@
 import {
   AlertCircle,
   BarChart3,
-  Clock,
-  FileText,
-  History,
   Map,
-  Navigation,
   Package,
-  Settings,
-  Smartphone,
-  Users,
+  Users
 } from 'lucide-react';
 
 interface BottomNavProps {

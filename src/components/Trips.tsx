@@ -1,6 +1,5 @@
-import React from 'react';
+import { Calendar, CheckCircle, Fuel, Gauge, MapPin, Timer, TrendingUp, Truck } from 'lucide-react';
 import Chart from 'react-apexcharts';
-import { Truck, CheckCircle, Fuel, MapPin, Calendar, Timer, Gauge, Activity, TrendingUp } from 'lucide-react';
 
 interface Trip {
   id: number;
@@ -72,17 +71,6 @@ export default function Trips() {
   };
 
   const statusDonutSeries = [stats.completed, stats.ongoing, stats.scheduled];
-
-  const fuelTrendOptions: ApexCharts.ApexOptions = {
-    chart: { type: 'area', toolbar: { show: false }, sparkline: { enabled: true } },
-    stroke: { curve: 'smooth', width: 3 },
-    fill: { type: 'gradient', gradient: { opacityFrom: 0.6, opacityTo: 0 } },
-    colors: ['#f97316'],
-    xaxis: { categories: ['10 Jan', '11 Jan', '12 Jan', '13 Jan', '14 Jan', '15 Jan', '16 Jan'] },
-    tooltip: { x: { format: 'dd MMM' } },
-  };
-
-  const fuelTrendSeries = [{ name: 'Fuel (L)', data: [42, 38, 55, 48, 62, 51, 58] }];
 
   const getStatusBadge = (status: string) => {
     const styles = {
@@ -182,10 +170,17 @@ export default function Trips() {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Trip Status Overview</h3>
             <Chart options={statusDonutOptions} series={statusDonutSeries} type="donut" height={280} />
             <div className="mt-4 space-y-3">
-              {[['Completed', stats.completed, '#10b981'], ['Ongoing', stats.ongoing, '#3b82f6'], ['Scheduled', stats.scheduled, '#f59e0b']].map(([label, value, color]) => (
+              {[
+                { label: 'Completed', value: stats.completed, color: '#10b981' },
+                { label: 'Ongoing', value: stats.ongoing, color: '#3b82f6' },
+                { label: 'Scheduled', value: stats.scheduled, color: '#f59e0b' },
+              ].map(({ label, value, color }) => (
                 <div key={label} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: color}}></div>
+                    <div 
+                      className="w-3 h-3 rounded-full" 
+                      style={{ backgroundColor: color }}  // sekarang color pasti string
+                    />
                     <span className="text-sm text-gray-700">{label}</span>
                   </div>
                   <span className="font-semibold text-gray-900">{value}</span>

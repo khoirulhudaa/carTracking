@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Star, AlertCircle, TrendingUp } from 'lucide-react';
+import { AlertCircle, Mail, Phone, Star, TrendingUp } from 'lucide-react';
 
 function Drivers() {
   const drivers = [
@@ -70,82 +70,85 @@ function Drivers() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-800">Drivers</h1>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-          Add Driver
-        </button>
-      </div>
+     <div className="min-h-screen bg-white rounded-xl py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-gray-800">Drivers</h1>
+          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            Add Driver
+          </button>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
-        {drivers.map((driver) => (
-          <div key={driver.id} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-800">{driver.name}</h3>
-                <p className="text-sm text-gray-500">License: {driver.license}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+          {drivers.map((driver) => (
+            <div key={driver.id} className="border border-black/10 bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800">{driver.name}</h3>
+                  <p className="text-sm text-gray-500">License: {driver.license}</p>
+                </div>
+                <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(driver.status)}`}>
+                  {driver.status}
+                </span>
               </div>
-              <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(driver.status)}`}>
-                {driver.status}
-              </span>
-            </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-gray-200">
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-gray-400" />
-                <span className="text-sm text-gray-600">{driver.email}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-gray-400" />
-                <span className="text-sm text-gray-600">{driver.phone}</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-4 gap-3 mb-4 pb-4 border-b border-gray-200">
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Rating</p>
-                <div className="flex items-center space-x-1">
-                  <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                  <span className="font-semibold text-gray-800">{driver.rating}</span>
+              <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-gray-200">
+                <div className="flex items-center space-x-2">
+                  <Mail className="w-4 h-4 text-gray-400" />
+                  <span className="text-sm text-gray-600">{driver.email}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Phone className="w-4 h-4 text-gray-400" />
+                  <span className="text-sm text-gray-600">{driver.phone}</span>
                 </div>
               </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Trips</p>
-                <div className="flex items-center space-x-1">
-                  <TrendingUp className="w-4 h-4 text-blue-500" />
-                  <span className="font-semibold text-gray-800">{driver.trips}</span>
-                </div>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Violations</p>
-                <div className="flex items-center space-x-1">
-                  <AlertCircle className={`w-4 h-4 ${driver.violations > 0 ? 'text-red-500' : 'text-green-500'}`} />
-                  <span className="font-semibold text-gray-800">{driver.violations}</span>
-                </div>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Experience</p>
-                <span className="font-semibold text-gray-800">{driver.experience}</span>
-              </div>
-            </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Last Trip</p>
-                <p className="text-sm font-medium text-gray-800">{driver.lastTrip}</p>
+              <div className="grid grid-cols-4 gap-3 mb-4 pb-4 border-b border-gray-200">
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Rating</p>
+                  <div className="flex items-center space-x-1">
+                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                    <span className="font-semibold text-gray-800">{driver.rating}</span>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Trips</p>
+                  <div className="flex items-center space-x-1">
+                    <TrendingUp className="w-4 h-4 text-blue-500" />
+                    <span className="font-semibold text-gray-800">{driver.trips}</span>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Violations</p>
+                  <div className="flex items-center space-x-1">
+                    <AlertCircle className={`w-4 h-4 ${driver.violations > 0 ? 'text-red-500' : 'text-green-500'}`} />
+                    <span className="font-semibold text-gray-800">{driver.violations}</span>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Experience</p>
+                  <span className="font-semibold text-gray-800">{driver.experience}</span>
+                </div>
               </div>
-              <div className="flex justify-end space-x-2">
-                <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
-                  View
-                </button>
-                <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
-                  Edit
-                </button>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Last Trip</p>
+                  <p className="text-sm font-medium text-gray-800">{driver.lastTrip}</p>
+                </div>
+                <div className="flex justify-end space-x-2">
+                  <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
+                    View
+                  </button>
+                  <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
+                    Edit
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        
       </div>
     </div>
   );

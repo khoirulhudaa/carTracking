@@ -1,4 +1,4 @@
-import { User, MapPin, AlertCircle, Clock, Filter } from 'lucide-react';
+import { AlertCircle, Clock, Filter, User } from 'lucide-react';
 
 function Logs() {
   const logs = [
@@ -120,65 +120,67 @@ function Logs() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-800">System Logs</h1>
-        <div className="flex items-center space-x-3">
-          <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-            <option>All Types</option>
-            <option>Location Updates</option>
-            <option>Events</option>
-            <option>Maintenance</option>
-            <option>Connections</option>
-          </select>
-          <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-            <option>Last 24 Hours</option>
-            <option>Last 7 Days</option>
-            <option>Last 30 Days</option>
-          </select>
-          <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-            <Filter className="w-4 h-4" />
-          </button>
+     <div className="min-h-screen bg-white rounded-xl py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-gray-800">System Logs</h1>
+          <div className="flex items-center space-x-3">
+            <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+              <option>All Types</option>
+              <option>Location Updates</option>
+              <option>Events</option>
+              <option>Maintenance</option>
+              <option>Connections</option>
+            </select>
+            <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+              <option>Last 24 Hours</option>
+              <option>Last 7 Days</option>
+              <option>Last 30 Days</option>
+            </select>
+            <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <Filter className="w-4 h-4" />
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div className="space-y-3">
-        {logs.map((log) => (
-          <div key={log.id} className={`p-4 rounded-lg ${getStatusColor(log.status)} transition-all hover:shadow-sm`}>
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0 mt-1">
-                {getStatusIcon(log.status)}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center space-x-2">
-                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${getTypeColor(log.type)}`}>
-                      {log.type}
-                    </span>
-                    <span className="text-sm font-medium text-gray-700">{log.vehicle}</span>
-                  </div>
-                  <span className="text-xs text-gray-500 flex items-center space-x-1">
-                    <Clock className="w-3 h-3" />
-                    <span>{log.timestamp}</span>
-                  </span>
+        <div className="space-y-3">
+          {logs.map((log) => (
+            <div key={log.id} className={`p-4 rounded-lg ${getStatusColor(log.status)} transition-all hover:shadow-sm`}>
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0 mt-1">
+                  {getStatusIcon(log.status)}
                 </div>
-                <p className="text-sm text-gray-700 mb-2">{log.details}</p>
-                <div className="flex items-center space-x-4 text-xs text-gray-600">
-                  <div className="flex items-center space-x-1">
-                    <User className="w-3 h-3" />
-                    <span>{log.driver}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center space-x-2">
+                      <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${getTypeColor(log.type)}`}>
+                        {log.type}
+                      </span>
+                      <span className="text-sm font-medium text-gray-700">{log.vehicle}</span>
+                    </div>
+                    <span className="text-xs text-gray-500 flex items-center space-x-1">
+                      <Clock className="w-3 h-3" />
+                      <span>{log.timestamp}</span>
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-700 mb-2">{log.details}</p>
+                  <div className="flex items-center space-x-4 text-xs text-gray-600">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-3 h-3" />
+                      <span>{log.driver}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <div className="flex items-center justify-center pt-4">
-        <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm font-medium">
-          Load More
-        </button>
+        <div className="flex items-center justify-center pt-4">
+          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm font-medium">
+            Load More
+          </button>
+        </div>
       </div>
     </div>
   );

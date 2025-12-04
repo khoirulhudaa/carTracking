@@ -50,7 +50,6 @@ interface Local3DViewerProps {
 const Local3DViewer: React.FC<Local3DViewerProps> = ({
   modelName,
   scale = 1,
-  height = "510px",
 }) => {
   const modelPath = `/assets/${modelName}`;
 

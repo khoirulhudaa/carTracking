@@ -90,92 +90,94 @@ function Devices() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-800">Devices</h1>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-          Add Device
-        </button>
-      </div>
+     <div className="min-h-screen bg-white rounded-xl py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-gray-800">Devices</h1>
+          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            Add Device
+          </button>
+        </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
-        {devices.map((device) => (
-          <div key={device.id} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 mt-1">
-                  <Smartphone className="w-6 h-6 text-blue-600" />
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
+          {devices.map((device) => (
+            <div key={device.id} className="border border-black/10 bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <Smartphone className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800">{device.name}</h3>
+                    <p className="text-sm text-gray-500">IMEI: {device.imei}</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2">
+                    {getStatusIcon(device.status)}
+                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(device.status)}`}>
+                      {device.status}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 pb-4 border-b border-gray-200">
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Vehicle</p>
+                  <p className="text-sm font-medium text-gray-800">{device.vehicle}</p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">{device.name}</h3>
-                  <p className="text-sm text-gray-500">IMEI: {device.imei}</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="flex items-center space-x-2">
-                  {getStatusIcon(device.status)}
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(device.status)}`}>
-                    {device.status}
+                  <p className="text-xs text-gray-500 mb-1">Type</p>
+                  <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${getTypeColor(device.type)}`}>
+                    {device.type}
                   </span>
                 </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 pb-4 border-b border-gray-200">
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Vehicle</p>
-                <p className="text-sm font-medium text-gray-800">{device.vehicle}</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Type</p>
-                <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${getTypeColor(device.type)}`}>
-                  {device.type}
-                </span>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Model</p>
-                <p className="text-sm font-medium text-gray-800">{device.model}</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Firmware</p>
-                <p className="text-sm font-medium text-gray-800">{device.firmwareVersion}</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              <div>
-                <p className="text-xs text-gray-500 mb-1 flex items-center space-x-1">
-                  <Wifi className="w-3 h-3" />
-                  <span>Signal Strength</span>
-                </p>
-                <div className="flex items-center space-x-2">
-                  <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-emerald-500"
-                      style={{ width: `${device.signalStrength}%` }}
-                    />
-                  </div>
-                  <span className="text-sm font-medium text-gray-800">{device.signalStrength}%</span>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Model</p>
+                  <p className="text-sm font-medium text-gray-800">{device.model}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Firmware</p>
+                  <p className="text-sm font-medium text-gray-800">{device.firmwareVersion}</p>
                 </div>
               </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1 flex items-center space-x-1">
-                  <Clock className="w-3 h-3" />
-                  <span>Last Seen</span>
-                </p>
-                <p className="text-sm font-medium text-gray-800">{device.lastSeen}</p>
-              </div>
-              <div className="flex justify-end space-x-2 pt-5">
-                <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
-                  Configure
-                </button>
-                <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
-                  Details
-                </button>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div>
+                  <p className="text-xs text-gray-500 mb-1 flex items-center space-x-1">
+                    <Wifi className="w-3 h-3" />
+                    <span>Signal Strength</span>
+                  </p>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-emerald-500"
+                        style={{ width: `${device.signalStrength}%` }}
+                      />
+                    </div>
+                    <span className="text-sm font-medium text-gray-800">{device.signalStrength}%</span>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1 flex items-center space-x-1">
+                    <Clock className="w-3 h-3" />
+                    <span>Last Seen</span>
+                  </p>
+                  <p className="text-sm font-medium text-gray-800">{device.lastSeen}</p>
+                </div>
+                <div className="flex justify-end space-x-2 pt-5">
+                  <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
+                    Configure
+                  </button>
+                  <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
+                    Details
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
