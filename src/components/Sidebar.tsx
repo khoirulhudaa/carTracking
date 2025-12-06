@@ -98,26 +98,27 @@ function Sidebar({ activePage, onPageChange }: SidebarProps) {
     { icon: Package,     label: 'Assets Car',            id: 'assets' },
     { icon: BarChart3,   label: 'Trips Car',             id: 'trips' },
     { icon: AlertCircle, label: 'My Events',            id: 'events' },
-    { icon: Users, label: 'Drivers Data', id: 'drivers' },
-    { icon: Smartphone, label: 'Sensors', id: 'sensors' },
-    { icon: Package, label: 'Devices', id: 'devices' },
-    { icon: History, label: 'Logs Driver', id: 'logs' },
-    { icon: Clock, label: 'Time Driver', id: 'time' },
-    { icon: Settings, label: 'Other Tools', id: 'tools' },
-    { icon: FileText, label: 'Report Car', id: 'reports' },
+    
+    // { icon: Users, label: 'Drivers Data', id: 'drivers' },
+    // { icon: Smartphone, label: 'Sensors', id: 'sensors' },
+    // { icon: Package, label: 'Devices', id: 'devices' },
+    // { icon: History, label: 'Logs Driver', id: 'logs' },
+    // { icon: Clock, label: 'Time Driver', id: 'time' },
+    // { icon: Settings, label: 'Other Tools', id: 'tools' },
+    // { icon: FileText, label: 'Report Car', id: 'reports' },
 
     // === Menu Baru (semua disabled sementara karena fitur "coming soon") ===
     { icon: Wrench,      label: 'Maintenance', id: 'maintenance' },
     { icon: Fuel,        label: 'Fuel Car',       id: 'fuel' },
     { icon: Map,         label: 'Tracking',   id: 'tracking' },
     { icon: Car,         label: 'Engine Car',    id: 'telemetry' },
-    { icon: Camera,      label: 'Audio/Video',id: 'monitoring' },
-    { icon: Siren,       label: 'Emergency',       id: 'emergency' },
-    { icon: BellRing,    label: 'Notifications',         id: 'notifications' },
-    { icon: Settings,    label: 'Settings',              id: 'settings' },
+    // { icon: Camera,      label: 'Audio/Video',id: 'monitoring' },
+    // { icon: Siren,       label: 'Emergency',       id: 'emergency' },
+    // { icon: BellRing,    label: 'Notifications',         id: 'notifications' },
+    // { icon: Settings,    label: 'Settings',              id: 'settings' },
   ];
 
-  const eventsIndex = menuItems.findIndex(item => item.id === 'settings');
+  const eventsIndex = menuItems.findIndex(item => item.id === 'telemetry');
 
   return (
     <aside className="w-full md:w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">

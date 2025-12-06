@@ -238,7 +238,7 @@ function Dashboard() {
                     </div>
                     <div className="py-1">
                       <button
-                        onClick={() => { setIsProfileOpen(false); setActivePage('profile'); }}
+                        // onClick={() => { setIsProfileOpen(false); setActivePage('profile'); }}
                         className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3"
                       >
                         <User className="w-4 h-4" /> Profile Saya
@@ -246,7 +246,7 @@ function Dashboard() {
                     </div>
                     <div className="border-t border-gray-100 pt-1">
                       <button
-                        onClick={() => { setIsProfileOpen(false); setActivePage('login'); }}
+                        // onClick={() => { setIsProfileOpen(false); setActivePage('login'); }}
                         className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 font-medium flex items-center gap-3"
                       >
                         <LogOut className="w-4 h-4" /> Keluar

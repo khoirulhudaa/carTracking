@@ -135,9 +135,7 @@ export default function Header() {
                   <div className="border-t border-gray-100 pt-1">
                     <button
                       onClick={() => {
-                        // Handle logout di sini (hapus token, redirect ke /login, dll)
                         alert('Logout berhasil!');
-                        // Contoh: router.push('/login')
                       }}
                       className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition font-medium"
                     >
