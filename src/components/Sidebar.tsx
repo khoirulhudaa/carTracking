@@ -110,15 +110,15 @@ function Sidebar({ activePage, onPageChange }: SidebarProps) {
     // === Menu Baru (semua disabled sementara karena fitur "coming soon") ===
     { icon: Wrench,      label: 'Maintenance', id: 'maintenance' },
     { icon: Fuel,        label: 'Fuel Car',       id: 'fuel' },
-    { icon: Map,         label: 'Tracking',   id: 'tracking' },
-    { icon: Car,         label: 'Engine Car',    id: 'telemetry' },
+    // { icon: Map,         label: 'Tracking',   id: 'tracking' },
+    // { icon: Car,         label: 'Engine Car',    id: 'telemetry' },
     // { icon: Camera,      label: 'Audio/Video',id: 'monitoring' },
     // { icon: Siren,       label: 'Emergency',       id: 'emergency' },
     // { icon: BellRing,    label: 'Notifications',         id: 'notifications' },
     // { icon: Settings,    label: 'Settings',              id: 'settings' },
   ];
 
-  const eventsIndex = menuItems.findIndex(item => item.id === 'telemetry');
+  const eventsIndex = menuItems.findIndex(item => item.id === 'fuel');
 
   return (
     <aside className="w-full md:w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">

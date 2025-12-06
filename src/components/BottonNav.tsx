@@ -2,8 +2,7 @@ import {
   AlertCircle,
   BarChart3,
   Map,
-  Package,
-  Users
+  Package
 } from 'lucide-react';
 
 interface BottomNavProps {
@@ -16,7 +15,7 @@ const navItems = [
   { id: 'assets',   label: 'Assets',   icon: Package },
   { id: 'trips',    label: 'Trips',    icon: BarChart3 },
   { id: 'events',   label: 'Events',   icon: AlertCircle },
-  { id: 'drivers',  label: 'Drivers',  icon: Users },
+  // { id: 'drivers',  label: 'Drivers',  icon: Users },
   // Jika ingin semua item di bottom nav, uncomment baris di bawah ini
   // { id: 'sensors',  label: 'Sensors',  icon: Smartphone },
   // { id: 'devices',  label: 'Devices',  icon: Package },

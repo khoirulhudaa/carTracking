@@ -317,13 +317,13 @@ function Dashboard() {
 
           {/* Bottom Navigation (Mobile only) */}
           <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40">
-            <div className="grid grid-cols-5 gap-1 py-2">
+            <div className="grid grid-cols-4 gap-1 py-2">
               {[
                 { id: 'map', icon: Map, label: 'Map' },
                 { id: 'assets', icon: Package, label: 'Assets' },
                 { id: 'trips', icon: BarChart3, label: 'Trips' },
                 { id: 'events', icon: AlertCircle, label: 'Events' },
-                { id: 'drivers', icon: Users, label: 'Drivers' },
+                // { id: 'drivers', icon: Users, label: 'Drivers' },
               ].map((item) => {
                 const Icon = item.icon;
                 const isActive = activePage === item.id;
