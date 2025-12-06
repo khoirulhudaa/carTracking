@@ -21,14 +21,14 @@ export default function FuelManagement() {
      <div className="min-h-screen bg-white rounded-xl py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <h1 className="text-3xl font-bold text-gray-800">Fuel Management</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Fuel Management</h1>
             <button className="px-5 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-xl flex items-center gap-3">
             <Fuel className="w-5 h-5" />
             <span className="font-medium">Input Manual Isi Bensin</span>
             </button>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 border border-orange-200">
             <div className="flex items-center justify-between">
                 <div>
@@ -103,10 +103,10 @@ export default function FuelManagement() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm p-6 border">
-            <h3 className="text-xl font-bold text-gray-800 mb-5">Peta Lokasi Pengisian Bulan Ini</h3>
-            <div className="h-96 bg-gray-100 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-300">
+            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-5">Peta Lokasi Pengisian Bulan Ini</h3>
+            <div className="h-60 md:h-96 bg-gray-100 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-300">
             <div className="text-center">
-                <MapPin className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <MapPin className="w-16 h-full md:h-16 text-gray-400 mx-auto mb-4" />
                 <p className="text-lg font-medium text-gray-700">Interactive Map</p>
                 <p className="text-sm text-gray-500">Klik titik untuk detail SPBU & transaksi</p>
             </div>

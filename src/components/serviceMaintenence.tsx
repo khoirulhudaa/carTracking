@@ -28,7 +28,7 @@ export default function ServiceMaintenance() {
     <div className="min-h-screen bg-white rounded-xl py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <h1 className="text-3xl font-bold text-gray-800">Service & Maintenance</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Service & Maintenance</h1>
             <button className="px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl flex items-center gap-3 shadow-md">
             <QrCode className="w-5 h-5" />
             <span className="font-medium">Scan QR Mekanik</span>
@@ -36,7 +36,7 @@ export default function ServiceMaintenance() {
         </div>
 
         {/* KPI Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
             <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border border-amber-200">
             <div className="flex items-center justify-between">
                 <div>
