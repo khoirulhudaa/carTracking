@@ -122,7 +122,7 @@ function Reports() {
               <div className="divide-y divide-gray-200">
                 {reports.map((report) => (
                   <div key={report.id} className="p-6 hover:bg-gray-50 transition-colors">
-                    <div className="flex items-start justify-between">
+                    <div className="md:flex items-start justify-between">
                       <div className="flex-1">
                         <h3 className="text-base font-semibold text-gray-800">{report.name}</h3>
                         <p className="text-sm text-gray-600 mt-1">{report.description}</p>
@@ -132,14 +132,14 @@ function Reports() {
                           <span>{report.generated}</span>
                         </div>
                       </div>
-                      <div className="flex items-center space-x-3 ml-4">
-                        <span className="px-2.5 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
+                      <div className="flex items-center md:space-x-3 md:ml-4">
+                        <span className="md:flex hidden px-2.5 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
                           {report.format}
                         </span>
-                        <span className="px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">
+                        <span className="md:flex hidden px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">
                           {report.status}
                         </span>
-                        <button className="flex items-center space-x-1 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">
+                        <button className="md:mt-0 mt-5 flex items-center space-x-1 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-100 text-sm">
                           <Download className="w-4 h-4" />
                           <span>Download</span>
                         </button>
