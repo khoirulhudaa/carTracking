@@ -199,7 +199,7 @@ function Sidebar({ activePage, onPageChange }: SidebarProps) {
           <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
             <Navigation className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold text-gray-800">Truckly</span>
+          <span className="text-2xl font-bold text-gray-800">Tracker</span>
         </div>
       </div>
 

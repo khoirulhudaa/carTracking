@@ -385,6 +385,7 @@ import Sidebar from './Sidebar';
 import TabsContent from './tabsContent';
 import TimeManagement from './TimeManagement';
 import Tools from './Tools';
+import TrackingMapView from './trackingMapView';
 import Trips from './Trips';
 import VehicleProfile from './VehicleProfile';
 
@@ -643,7 +644,8 @@ function Dashboard() {
       case 'fuel':
         return <FuelManagement />;
       case 'tracking':
-        return <Reports />;
+        // return <Reports />;
+        return <TrackingMapView />;
       case 'telemetry':
         return <EngineTelemetry />;
       case 'monitoring':
@@ -693,7 +695,7 @@ function Dashboard() {
 
           <div className="flex items-center space-x-1">
             {/* Language */}
-            <div className="relative">
+            <div className="relative z-[2222]">
               <button onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                 className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition text-sm font-medium">
                 <Globe className="w-5 h-5" />
@@ -702,7 +704,7 @@ function Dashboard() {
               </button>
               {isLanguageOpen && (
                 <>
-                  <div className="fixed inset-0 z-40" onClick={() => setIsLanguageOpen(false)} />
+                  {/* <div className="fixed inset-0 z-[222222]" onClick={() => setIsLanguageOpen(false)} /> */}
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border py-2 z-50">
                     {languages.map(l => (
                       <button key={l.code} onClick={() => { setLang(l.code as Language); setIsLanguageOpen(false); }}
