@@ -1,8 +1,8 @@
 // src/Sidebar.tsx
-import { useState } from 'react';
 import { X } from 'lucide-react';
+import { useState } from 'react';
 import ActivityChart from './ActivityChart';
-import ActivityTimeline from './ActivityTimeline';
+import ActivityTimeline from './activityTimeLine';
 
 interface SidebarProps {
   driverName: string;
