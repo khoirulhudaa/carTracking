@@ -213,8 +213,6 @@ interface MapStylePreset {
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 ite shadow-lg p-6">
         <div className="mt-3 text-sm flex items-center gap-8">
-          {/* <span>Kendaraan: <strong>{fleet.length}</strong></span> */}
-          {/* <span>Rute Aktif: <strong>{Object.keys(routes).length}</strong></span> */}
           {loading && <span className="text-orange-600 font-bold">Memuat rute...</span>}
         </div>
       </div>
