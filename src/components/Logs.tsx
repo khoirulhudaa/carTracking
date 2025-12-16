@@ -1,6 +1,10 @@
+// src/components/Logs.tsx
 import { AlertCircle, Clock, Filter, User } from 'lucide-react';
+import { useTranslation } from './Dashboard'; // pastikan path sesuai, atau sesuaikan jika file Dashboard di tempat lain
 
 function Logs() {
+  const { t } = useTranslation();
+
   const logs = [
     {
       id: 1,
@@ -120,22 +124,22 @@ function Logs() {
   };
 
   return (
-     <div className="min-h-screen bg-white rounded-xl py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white rounded-xl py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-gray-800">System Logs</h1>
+          <h1 className="text-3xl font-bold text-gray-800">{t('Logs Driver')}</h1>
           <div className="flex items-center space-x-3">
             <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-              <option>All Types</option>
-              <option>Location Updates</option>
-              <option>Events</option>
-              <option>Maintenance</option>
-              <option>Connections</option>
+              <option>{t('All Types')}</option>
+              <option>{t('Location Updates')}</option>
+              <option>{t('Events')}</option>
+              <option>{t('Maintenance')}</option>
+              <option>{t('Connections')}</option>
             </select>
             <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-              <option>Last 24 Hours</option>
-              <option>Last 7 Days</option>
-              <option>Last 30 Days</option>
+              <option>{t('Last 24 Hours')}</option>
+              <option>{t('Last 7 Days')}</option>
+              <option>{t('Last 30 Days')}</option>
             </select>
             <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
               <Filter className="w-4 h-4" />
@@ -154,7 +158,7 @@ function Logs() {
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center space-x-2">
                       <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${getTypeColor(log.type)}`}>
-                        {log.type}
+                        {t(log.type)}
                       </span>
                       <span className="text-sm font-medium text-gray-700">{log.vehicle}</span>
                     </div>
@@ -163,7 +167,7 @@ function Logs() {
                       <span>{log.timestamp}</span>
                     </span>
                   </div>
-                  <p className="text-sm text-gray-700 mb-2">{log.details}</p>
+                  <p className="text-sm text-gray-700 mb-2">{t(log.details)}</p>
                   <div className="flex items-center space-x-4 text-xs text-gray-600">
                     <div className="flex items-center space-x-1">
                       <User className="w-3 h-3" />
@@ -178,7 +182,7 @@ function Logs() {
 
         <div className="flex items-center justify-center pt-4">
           <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm font-medium">
-            Load More
+            {t('Load More')}
           </button>
         </div>
       </div>

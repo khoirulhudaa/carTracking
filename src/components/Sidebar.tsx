@@ -3,6 +3,7 @@ import {
   AlertCircle, BarChart3,
   Camera, Car,
   Fuel,
+  History,
   Home, Map, Navigation,
   Package,
   Smartphone, Wrench
@@ -29,7 +30,7 @@ function Sidebar({ activePage, onPageChange }: SidebarProps) {
     { icon: Smartphone, label: 'Sensors', id: 'sensors' },
     { icon: Camera,      label: 'Audio/Video',id: 'monitoring' },
     { icon: Package, label: 'Devices', id: 'devices' },
-    // { icon: History, label: 'Logs Driver', id: 'logs' },
+    { icon: History, label: 'Logs Driver', id: 'logs' },
     // { icon: Clock, label: 'Time Driver', id: 'time' },
     // { icon: Settings, label: 'Other Tools', id: 'tools' },
     // { icon: FileText, label: 'Report Car', id: 'reports' }, 
@@ -38,7 +39,7 @@ function Sidebar({ activePage, onPageChange }: SidebarProps) {
     // { icon: Settings,    label: 'Settings',              id: 'settings' },
   ];
 
-  const lastEnabledIndex = menuItems.findIndex(i => i.id === 'devices');
+  const lastEnabledIndex = menuItems.findIndex(i => i.id === 'logs');
 
   return (
     <aside className="w-full md:w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">
