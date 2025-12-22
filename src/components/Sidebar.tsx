@@ -2,6 +2,8 @@
 import {
   AlertCircle, BarChart3,
   Camera, Car,
+  Clock,
+  FileText,
   Fuel,
   History,
   Home, Map, Navigation,
@@ -33,14 +35,14 @@ function Sidebar({ activePage, onPageChange }: SidebarProps) {
     { icon: Package, label: 'Devices', id: 'devices' },
     { icon: History, label: 'Logs Driver', id: 'logs' },
     { icon: Settings, label: 'Other Tools', id: 'tools' },
-    // { icon: Clock, label: 'Time Driver', id: 'time' },
-    // { icon: FileText, label: 'Report Car', id: 'reports' }, 
+    { icon: Clock, label: 'Time Driver', id: 'time' },
+    { icon: FileText, label: 'Report Car', id: 'reports' }, 
     // { icon: Siren,       label: 'Emergency',       id: 'emergency' },
     // { icon: BellRing,    label: 'Notifications',         id: 'notifications' },
     // { icon: Settings,    label: 'Settings',              id: 'settings' },
   ];
 
-  const lastEnabledIndex = menuItems.findIndex(i => i.id === 'tools');
+  const lastEnabledIndex = menuItems.findIndex(i => i.id === 'reports');
 
   return (
     <aside className="w-full md:w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">
