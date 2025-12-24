@@ -1,5 +1,5 @@
+import { Bell, ChevronDown, Filter, LogOut, Search, Settings, User } from 'lucide-react';
 import { useState } from 'react';
-import { Search, Filter, Bell, User, ChevronDown, Settings, LogOut } from 'lucide-react';
 
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -104,7 +104,7 @@ export default function Header() {
               <>
                 {/* Backdrop */}
                 <div
-                  className="fixed inset-0 z-40"
+                  className="fixed inset-0 z-[999999999999]"
                   onClick={() => setIsDropdownOpen(false)}
                 />
 

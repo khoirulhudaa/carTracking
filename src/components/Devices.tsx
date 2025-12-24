@@ -202,7 +202,7 @@ function Devices() {
               </div>
 
               {/* Bottom */}
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-3 gap-4">
                 <div>
                   <p className="text-xs text-gray-500 mb-1 flex items-center gap-1">
                     <Wifi className="w-3 h-3" />
@@ -231,7 +231,7 @@ function Devices() {
                   </p>
                 </div>
 
-                <div className="flex justify-end items-end space-x-2">
+                <div className="flex justify-start md:justify-end items-end space-x-2">
                   <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
                     {t('Configure')}
                   </button>

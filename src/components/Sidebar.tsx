@@ -1,14 +1,16 @@
 // src/components/Sidebar.tsx
 import {
   AlertCircle, BarChart3,
+  BellRing,
   Camera, Car,
   Clock,
   FileText,
   Fuel,
   History,
-  Home, Map, Navigation,
+  Home, Map,
   Package,
   Settings,
+  Siren,
   Smartphone, Wrench
 } from 'lucide-react';
 import { useTranslation } from './Dashboard';
@@ -37,25 +39,25 @@ function Sidebar({ activePage, onPageChange }: SidebarProps) {
     { icon: Settings, label: 'Other Tools', id: 'tools' },
     { icon: Clock, label: 'Time Driver', id: 'time' },
     { icon: FileText, label: 'Report Car', id: 'reports' }, 
-    // { icon: Siren,       label: 'Emergency',       id: 'emergency' },
-    // { icon: BellRing,    label: 'Notifications',         id: 'notifications' },
+    { icon: Siren,       label: 'Emergency',       id: 'emergency' },
+    { icon: BellRing,    label: 'Notifications',         id: 'notifications' },
     // { icon: Settings,    label: 'Settings',              id: 'settings' },
   ];
 
-  const lastEnabledIndex = menuItems.findIndex(i => i.id === 'reports');
+  const lastEnabledIndex = menuItems.findIndex(i => i.id === 'notifications');
 
   return (
     <aside className="w-full md:w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">
       <div className="md:p-6 sticky top-0 bg-white z-10 md:border-b">
         <div className="hidden md:flex items-center space-x-3">
           <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
-            <Navigation className="w-6 h-6 text-white" />
+            <Car className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold text-gray-800">Tracker</span>
+          <span className="text-2xl font-bold text-gray-800">LINTAS</span>
         </div>
       </div>
 
-      <nav className="p-4 space-y-1">
+      <nav className="p-4 space-y-1 pb-24 md:pb-4">
         {menuItems.map((item, idx) => {
           const disabled = idx > lastEnabledIndex;
           const active = activePage === item.id;

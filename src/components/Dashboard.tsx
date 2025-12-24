@@ -1,6 +1,6 @@
 // src/components/Dashboard.tsx
 import {
-  AlertCircle, BarChart3, ChevronDown, Globe, LogOut, Map, Menu,
+  AlertCircle, BarChart3, Car, ChevronDown, Globe, LogOut, Map, Menu,
   Navigation, Package, User, X
 } from 'lucide-react';
 import { createContext, ReactNode, useContext, useState } from 'react';
@@ -39,6 +39,18 @@ interface Translations {
 
 const translations: Record<Language, Translations> = {
   en: {
+    'Emergency / Accident Alert': 'Emergency / Accident Alert',
+    'ACTIVE EMERGENCY ALERT!': 'ACTIVE EMERGENCY ALERT!',
+    'Vehicle detected in accident': 'Vehicle detected in accident',
+    'Call Driver Now': 'Call Driver Now',
+    'Send Medical & Police Team': 'Send Medical & Police Team',
+    'No Active Emergency': 'No Active Emergency',
+    'All vehicles are safe': 'All vehicles are safe',
+    'Emergency History (Last 7 Days)': 'Emergency History (Last 7 Days)',
+    'Resolved': 'Resolved',
+    'Accident Detected': 'Accident Detected',
+    'Manual Emergency Button': 'Manual Emergency Button',
+    'Hard Braking + Impact': 'Hard Braking + Impact',
     'Reports': 'Reports',
     'Generate Report': 'Generate Report',
     'Total Reports': 'Total Reports',
@@ -220,6 +232,38 @@ const translations: Record<Language, Translations> = {
     'Add': 'Add',
   },
   id: {
+    'Emergency / Accident Alert': 'Peringatan Darurat / Kecelakaan',
+    'ACTIVE EMERGENCY ALERT!': 'PERINGATAN DARURAT AKTIF!',
+    'Vehicle detected in accident': 'Kendaraan terdeteksi mengalami kecelakaan',
+    'Call Driver Now': 'Hubungi Driver Sekarang',
+    'Send Medical & Police Team': 'Kirim Tim Medis & Polisi',
+    'No Active Emergency': 'Tidak Ada Darurat Aktif',
+    'All vehicles are safe': 'Semua kendaraan dalam kondisi aman',
+    'Emergency History (Last 7 Days)': 'Riwayat Darurat (7 Hari Terakhir)',
+    'Resolved': 'Selesai',
+    'Accident Detected': 'Kecelakaan Terdeteksi',
+    'Manual Emergency Button': 'Tombol Darurat Manual Ditekan',
+    'Hard Braking + Impact': 'Pengereman Keras + Benturan',
+
+    // Notification Center
+    'Notification Center': 'Pusat Notifikasi',
+    'Mark all as read': 'Tandai semua telah dibaca',
+    'Unread': 'Belum Dibaca',
+    'Total This Month': 'Total Bulan Ini',
+    'Today\'s Reminders': 'Pengingat Hari Ini',
+    'All Notifications': 'Semua Notifikasi',
+    'Low Fuel': 'Bahan Bakar Rendah',
+    'B 2345 MNO only 15% left': 'B 2345 MNO hanya tersisa 15%',
+    'Service Overdue': 'Service Terlambat',
+    'B 7890 JKL overdue by 1,200 km': 'B 7890 JKL sudah lewat 1.200 km',
+    'Emergency Button Pressed': 'Tombol Darurat Ditekan',
+    'Driver Budi P. (B 9012 DEF)': 'Driver Budi P. (B 9012 DEF)',
+    'Exited Area': 'Keluar Area',
+    'B 1234 ABC exited office zone': 'B 1234 ABC keluar zona kantor',
+    '10 minutes ago': '10 menit lalu',
+    '2 hours ago': '2 jam lalu',
+    '1 day ago': '1 hari lalu',
+    '3 days ago': '3 hari lalu',
     'Reports': 'Laporan',
     'Generate Report': 'Buat Laporan',
     'Total Reports': 'Total Laporan',
@@ -423,7 +467,6 @@ const translations: Record<Language, Translations> = {
     'Idle': 'Berhenti',
     'Active Alerts': 'Peringatan Aktif',
     'Speeding': 'Ngebut',
-    'Low Fuel': 'BBM Rendah',
     'Fleet Summary': 'Ringkasan Armada',
     'Avg Speed': 'Kecepatan Rata-rata',
 
@@ -588,7 +631,7 @@ function Dashboard() {
 
           <div className="flex items-center space-x-1">
             {/* Language */}
-            <div className="relative z-[2222]">
+            <div className="relative z-[44]">
               <button onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                 className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition text-sm font-medium">
                 <Globe className="w-5 h-5" />
@@ -658,15 +701,15 @@ function Dashboard() {
             <div className="hidden lg:block"><Sidebar activePage={activePage} onPageChange={setActivePage} /></div>
 
             {mobileMenuOpen && (
-              <div className="fixed inset-0 z-50 lg:hidden">
+              <div className="fixed inset-0 z-[99999999999999999999999999] lg:hidden">
                 <div className="absolute inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
-                <div className="absolute left-0 top-0 h-full w-64 bg-white shadow-xl">
+                <div className="absolute left-0 top-0 h-full w-[80vw] bg-white shadow-xl">
                   <div className="flex items-center justify-between p-6 border-b">
                     <div className="flex items-center space-x-2">
                       <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-                        <Navigation className="w-5 h-5 text-white" />
+                        <Car className="w-5 h-5 text-white" />
                       </div>
-                      <span className="text-xl font-bold">Truckly</span>
+                      <span className="text-xl font-bold">LINTAS</span>
                     </div>
                     <button onClick={() => setMobileMenuOpen(false)}><X className="w-6 h-6" /></button>
                   </div>

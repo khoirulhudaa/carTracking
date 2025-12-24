@@ -224,7 +224,7 @@ export default function ServiceMaintenance() {
               <thead>
                 <tr className="border-b text-left text-gray-600 font-medium">
                   <th>{t('Vehicle')}</th>
-                  <th>{t('Service Type')}</th>
+                  <th className='md:flex hidden'>{t('Service Type')}</th>
                   <th>{t('Cost')}</th>
                   <th>{t('Mechanic')}</th>
                   <th>{t('Date')}</th>
@@ -235,7 +235,7 @@ export default function ServiceMaintenance() {
                 {history.map((h) => (
                   <tr key={h.id} className="border-b hover:bg-gray-50">
                     <td className="py-4 font-medium">{h.vehicle}</td>
-                    <td className="py-4">{h.type}</td>
+                    <td className="py-4 md:flex hidden">{h.type}</td>
                     <td className="py-4 font-semibold text-emerald-600">
                       Rp {h.cost.toLocaleString()}
                     </td>

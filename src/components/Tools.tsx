@@ -107,11 +107,11 @@ function Tools() {
         <div className="space-y-6">
           {/* Fleet Management Tools */}
           <div>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-gray-800">
+            <div className="md:flex items-center justify-between mb-4">
+              <h2 className="md:flex hidden text-xl font-semibold text-gray-800">
                 {t('Fleet Management Tools') || 'Fleet Management Tools'}
               </h2>
-              <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <button className="w-full md:w-max flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
                 <Plus className="w-4 h-4" />
                 <span>{t('Add Tool') || 'Add Tool'}</span>
               </button>
@@ -165,8 +165,8 @@ function Tools() {
                     key={setting.id}
                     className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
                   >
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-start space-x-4">
+                    <div className="md:flex items-start justify-between">
+                      <div className="flex items-center md:items-start space-x-4">
                         <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
                           <Icon className="w-5 h-5 text-gray-600" />
                         </div>
@@ -175,7 +175,7 @@ function Tools() {
                           <p className="text-sm text-gray-600 mt-1">{setting.description}</p>
                         </div>
                       </div>
-                      <button className="px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
+                      <button className="w-full md:w-max ml-auto md:ml-0 md:mt-0 mt-4 px-3 py-2 md:py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
                         {t('Configure') || 'Configure'}
                       </button>
                     </div>
