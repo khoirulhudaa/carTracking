@@ -1,22 +1,21 @@
 // components/pages/AudioVideoMonitoring.tsx
-import { useState } from 'react';
 import {
+  AlertCircle,
   Camera,
-  History,
-  PlayCircle,
+  Car,
+  ChevronRight,
+  Circle,
+  Download,
+  Filter,
+  Maximize2,
+  Search,
   Video,
   Volume2,
   VolumeX,
-  Search,
-  Download,
-  Maximize2,
-  Filter,
-  Car,
-  Circle,
-  AlertCircle,
-  X,
-  ChevronRight,
+  X
 } from 'lucide-react';
+import { useState } from 'react';
+import { useTranslation } from './Dashboard';
 
 interface CameraFeed {
   id: string;
@@ -46,7 +45,6 @@ const initialCameras: CameraFeed[] = [
   { id: '8', plate: 'L 8888 WWW', type: 'Dashcam Depan', status: 'Live', recording: true, hasAudio: true },
 ];
 
-// Daftar kendaraan unik
 const getVehicles = (cameras: CameraFeed[]): Vehicle[] => {
   const map = new Map<string, Vehicle>();
   cameras.forEach(cam => {
@@ -66,6 +64,8 @@ const getVehicles = (cameras: CameraFeed[]): Vehicle[] => {
 };
 
 export default function AudioVideoMonitoring() {
+  const { t } = useTranslation(); // ← tambahkan ini
+
   const [cameras] = useState<CameraFeed[]>(initialCameras);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<'All' | 'Live' | 'Offline' | 'Recording'>('All');
@@ -75,7 +75,6 @@ export default function AudioVideoMonitoring() {
 
   const vehicles = getVehicles(cameras);
 
-  // Filter utama
   const filteredCameras = cameras.filter(cam => {
     const matchesSearch = cam.plate.toLowerCase().includes(search.toLowerCase()) ||
                          cam.type.toLowerCase().includes(search.toLowerCase());
@@ -96,10 +95,6 @@ export default function AudioVideoMonitoring() {
     setAudioStates(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const clearVehicleFilter = () => {
-    setSelectedVehicle(null);
-  };
-
   return (
     <>
       <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -108,58 +103,67 @@ export default function AudioVideoMonitoring() {
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Audio & Video Monitoring</h1>
+              <h1 className="text-3xl font-bold text-gray-900">{t('Audio/Video')}</h1>
             </div>
 
-            {/* Tombol Lihat Semua Kendaraan — SEKARANG BERFUNGSI */}
             <button
               onClick={() => setShowVehicleModal(true)}
               className="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2 transition"
             >
               <Car className="w-5 h-5" />
-              Lihat Semua Kendaraan ({vehicles.length})
+              {t('View All Vehicle')} ({vehicles.length})
             </button>
           </div>
 
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl p-6 border border-indigo-200">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-indigo-700 text-sm font-medium">Total Kamera</p>
-                  <p className="text-4xl font-bold text-indigo-900 mt-2">{total}</p>
-                </div>
-                <Camera className="w-10 h-10 text-indigo-600" />
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl p-6 border border-emerald-200">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-emerald-700 text-sm font-medium">Live Streaming</p>
-                  <p className="text-4xl font-bold text-emerald-900 mt-2">{live}</p>
-                </div>
-                <Video className="w-10 h-10 text-emerald-600" />
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border border-amber-200">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-amber-700 text-sm font-medium">Sedang Merekam</p>
-                  <p className="text-4xl font-bold text-amber-900 mt-2">{recording}</p>
-                </div>
-                <Circle className="w-10 h-10 text-red-500 animate-pulse" />
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 border border-gray-200">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-700 text-sm font-medium">Offline</p>
-                  <p className="text-4xl font-bold text-gray-800 mt-2">{offline}</p>
-                </div>
-                <AlertCircle className="w-10 h-10 text-gray-500" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"> {/* gap lebih besar untuk breathing */}
+          {/* Total Kamera */}
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 border border-indigo-200 shadow-md hover:shadow-lg transition-shadow">
+            <div className="flex flex-col justify-between items-start">
+              <Camera className="w-8 h-8 mb-5 text-indigo-600 opacity-90" />
+              <div className="text-left">
+                <p className="text-indigo-700 text-sm font-semibold uppercase tracking-wider">{t('Total Cameras')}</p>
+                <p className="text-5xl font-bold text-indigo-900 mt-3">{total}</p>
               </div>
             </div>
           </div>
+
+          {/* Live Streaming */}
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 border border-emerald-200 shadow-md hover:shadow-lg transition-shadow">
+            <div className="flex flex-col justify-between items-start">
+              <Video className="w-8 h-8 mb-5 text-emerald-600 opacity-90" />
+              <div className="text-left">
+                <p className="text-emerald-700 text-sm font-semibold uppercase tracking-wider">{t('Siaran Langsung')}</p>
+                <p className="text-5xl font-bold text-emerald-900 mt-3">{live}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Sedang Merekam */}
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100 p-4 border border-amber-200 shadow-md hover:shadow-lg transition-shadow">
+            <div className="flex flex-col justify-between items-start">
+              <div className="relative">
+                <Circle className="w-8 h-8 mb-5 text-red-500" />
+                <Circle className="w-8 h-8 mb-5 text-red-500 animate-ping absolute inset-0" /> {/* pulse lebih halus */}
+              </div>
+              <div className="text-left">
+                <p className="text-amber-700 text-sm font-semibold uppercase tracking-wider">{t('Recording')}</p>
+                <p className="text-5xl font-bold text-amber-900 mt-3">{recording}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Offline */}
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 p-4 border border-gray-200 shadow-md hover:shadow-lg transition-shadow">
+            <div className="flex flex-col justify-between items-start">
+              <AlertCircle className="w-8 h-8 mb-5 text-gray-500 opacity-90" />
+              <div className="text-left">
+                <p className="text-gray-700 text-sm font-semibold uppercase tracking-wider">{t('Offline')}</p>
+                <p className="text-5xl font-bold text-gray-800 mt-3">{offline}</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
           {/* Search + Filter */}
           <div className="bg-white rounded-2xl shadow-sm border p-5">
@@ -168,7 +172,7 @@ export default function AudioVideoMonitoring() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Cari plat nomor atau tipe kamera..."
+                  placeholder={t('Cari plat nomor atau tipe kamera...')}
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="w-full md:w-[400px] pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -182,16 +186,16 @@ export default function AudioVideoMonitoring() {
                     onChange={(e) => setFilter(e.target.value as any)}
                     className="w-full bg-transparent outline-none font-medium text-gray-700"
                   >
-                    <option value="All">Semua</option>
-                    <option value="Live">Live</option>
-                    <option value="Recording">Sedang Merekam</option>
-                    <option value="Offline">Offline</option>
+                    <option value="All">{t('Semua')}</option>
+                    <option value="Live">{t('Live')}</option>
+                    <option value="Recording">{t('Sedang Merekam')}</option>
+                    <option value="Offline">{t('Offline')}</option>
                   </select>
                 </div>
               </div>
             </div>
             <p className="mt-3 text-sm text-gray-600">
-              Menampilkan {filteredCameras.length} dari {total} kamera
+              {t('Menampilkan')} {filteredCameras.length} {t('dari')} {total} {t('kamera')}
             </p>
           </div>
 
@@ -225,8 +229,8 @@ export default function AudioVideoMonitoring() {
                   ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 text-gray-500">
                       <Camera className="w-16 h-16 mb-3" />
-                      <p className="text-lg font-medium">Offline</p>
-                      {cam.lastSeen && <p className="text-sm">Terakhir aktif {cam.lastSeen}</p>}
+                      <p className="text-lg font-medium">{t('Offline')}</p>
+                      {cam.lastSeen && <p className="text-sm">{t('Terakhir aktif')} {cam.lastSeen}</p>}
                     </div>
                   )}
                 </div>
@@ -240,7 +244,6 @@ export default function AudioVideoMonitoring() {
                     <button className="flex-1 py-2.5 bg-indigo-600 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium hover:bg-indigo-700">
                       Playback
                     </button>
-                    {/* <button className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50"><History className="w-5 h-5" /></button> */}
                     <button className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50"><Download className="w-5 h-5" /></button>
                     <button className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 opacity-0 group-hover:opacity-100 transition">
                       <Maximize2 className="w-5 h-5" />
@@ -253,16 +256,13 @@ export default function AudioVideoMonitoring() {
         </div>
       </div>
 
-      {/* MODAL LIHAT SEMUA KENDARAAN */}
+      {/* Modal */}
       {showVehicleModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
             <div className="p-6 border-b border-gray-200 flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">Daftar Kendaraan</h2>
-              <button
-                onClick={() => setShowVehicleModal(false)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition"
-              >
+              <h2 className="text-2xl font-bold text-gray-900">{t('Daftar Kendaraan')}</h2>
+              <button onClick={() => setShowVehicleModal(false)} className="p-2 hover:bg-gray-100 rounded-lg transition">
                 <X className="w-6 h-6" />
               </button>
             </div>
@@ -278,7 +278,7 @@ export default function AudioVideoMonitoring() {
                   className="w-full p-5 border-b border-gray-100 hover:bg-gray-50 transition flex items-center justify-between group"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                    <div className="w-8 h-8 mb-5 bg-blue-100 rounded-xl flex items-center justify-center">
                       <Car className="w-7 h-7 text-blue-600" />
                     </div>
                     <div className="text-left">
@@ -287,7 +287,7 @@ export default function AudioVideoMonitoring() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-gray-600">{vehicle.cameraCount} kamera</p>
+                    <p className="text-sm text-gray-600">{vehicle.cameraCount} {t('kamera')}</p>
                     <p className="text-xs text-emerald-600 font-medium">{vehicle.liveCount} live</p>
                   </div>
                   <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
@@ -297,7 +297,7 @@ export default function AudioVideoMonitoring() {
 
             <div className="p-4 border-t border-gray-200 bg-gray-50">
               <p className="text-sm text-gray-600 text-center">
-                Total {vehicles.length} kendaraan terdaftar
+                {t('Total')} {vehicles.length} {t('kendaraan terdaftar')}
               </p>
             </div>
           </div>

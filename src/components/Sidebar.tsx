@@ -41,10 +41,10 @@ function Sidebar({ activePage, onPageChange }: SidebarProps) {
     { icon: FileText, label: 'Report Car', id: 'reports' }, 
     { icon: Siren,       label: 'Emergency',       id: 'emergency' },
     { icon: BellRing,    label: 'Notifications',         id: 'notifications' },
-    // { icon: Settings,    label: 'Settings',              id: 'settings' },
+    { icon: Settings,    label: 'Settings',              id: 'settings' },
   ];
 
-  const lastEnabledIndex = menuItems.findIndex(i => i.id === 'notifications');
+  const lastEnabledIndex = menuItems.findIndex(i => i.id === 'settings');
 
   return (
     <aside className="w-full md:w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">

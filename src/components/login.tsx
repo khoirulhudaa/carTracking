@@ -1,18 +1,25 @@
-import { Car, Eye, EyeOff, Lock, Mail } from 'lucide-react';
+import { ArrowLeft, Car, Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { useState } from 'react';
 
 // Di dalam file Signup.tsx
 interface SignupProps {
   onNavigateToRegister: () => void;
+  activePage: any;
 }
 
-export default function Login({ onNavigateToRegister }: SignupProps) {
+export default function Login({ onNavigateToRegister, activePage }: SignupProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center px-4">
+      <div onClick={() => activePage()} className='cursor-pointer absolute left-8 hover:text-gray-600 gap-2 active:scale-[0.98] top-12 hidden md:flex w-max'>
+        <ArrowLeft className='w-5 h-5' />
+        <p className='relative top-[-3px]'>
+          Back to Dashboard
+        </p>
+      </div>
       <div className="w-full md:w-[35vw]">
         {/* Logo + Title */}
 

@@ -1,7 +1,7 @@
 // src/components/Dashboard.tsx
 import {
   AlertCircle, BarChart3, Car, ChevronDown, Globe, LogOut, Map, Menu,
-  Navigation, Package, User, X
+  Package, User, X
 } from 'lucide-react';
 import { createContext, ReactNode, useContext, useState } from 'react';
 import ActivityChart from './ActivityChart';
@@ -39,6 +39,50 @@ interface Translations {
 
 const translations: Record<Language, Translations> = {
   en: {
+    'Total Cameras': 'Total Cameras',
+    'Recording': 'Recording',
+    'Offline': 'Offline',
+    'View All Vehicle': 'View All Vehicles',
+    'Siaran Langsung': 'Live Streaming',
+    'Settings': 'Settings',
+    'Role & Permission Management': 'Role & Permission Management',
+    'Edit Hak Akses': 'Edit Permissions',
+    'Multi-Factor Authentication (MFA)': 'Multi-Factor Authentication (MFA)',
+    'Wajib untuk Admin & Kepala Dinas': 'Required for Admin & Department Head',
+    'Vehicle Threshold Settings': 'Vehicle Threshold Settings',
+    'Fuel Low Alert': 'Fuel Low Alert',
+    'Max Speed Limit': 'Max Speed Limit',
+    'Service Interval': 'Service Interval',
+    'Notification Channels': 'Notification Channels',
+    'Push Notification (App)': 'Push Notification (App)',
+    'Email': 'Email',
+    'SMS (Critical Only)': 'SMS (Critical Only)',
+    'QR Code Management': 'QR Code Management',
+    'Generate QR Baru (100 unit)': 'Generate New QR (100 units)',
+    'Download Semua QR (PDF)': 'Download All QR (PDF)',
+    'Backup & Security Summary': 'Backup & Security Summary',
+    'Uptime Bulan Ini': 'Uptime This Month',
+    'Daily': 'Daily',
+    'Encrypted Backup': 'Encrypted Backup',
+    'Data Encryption': 'Data Encryption',
+    'Lokasi': 'Locations',
+    'Cloud + On-Premise': 'Cloud + On-Premise',
+
+    'Audio/Video': 'Audio/Video Monitoring',
+    'Lihat Semua Kendaraan': 'View All Vehicles',
+    'Total Kamera': 'Total Cameras',
+    // 'Live Streaming': 'Siaran Langsung',
+    'Sedang Merekam': 'Recording',
+    'Cari plat nomor atau tipe kamera...': 'Search license plate or camera type...',
+    'Semua': 'All',
+    'Live': 'Live',
+    'Menampilkan': 'Showing',
+    'dari': 'of',
+    'kamera': 'cameras',
+    'kendaraan terdaftar': 'registered vehicles',
+    'Terakhir aktif': 'Last seen',
+    'Daftar Kendaraan': 'Vehicle List',
+
     'Emergency / Accident Alert': 'Emergency / Accident Alert',
     'ACTIVE EMERGENCY ALERT!': 'ACTIVE EMERGENCY ALERT!',
     'Vehicle detected in accident': 'Vehicle detected in accident',
@@ -147,7 +191,7 @@ const translations: Record<Language, Translations> = {
     'Configure': 'Configure',
     'Details': 'Details',
     'Online': 'Online',
-    'Offline': 'Offline',
+    // 'Offline': 'Offline',
     'IMEI': 'IMEI',
 
     // Global / Header
@@ -165,10 +209,10 @@ const translations: Record<Language, Translations> = {
     'Fuel Car': 'Fuel Management',
     'Tracking': 'Tracking',
     'Engine Car': 'Engine Telemetry',
-    'Audio/Video': 'Audio/Video Monitoring',
+    // 'Audio/Video': 'Audio/Video Monitoring',
     'Emergency': 'Emergency Alert',
     'Notifications': 'Notifications',
-    'Settings': 'Settings',
+    // 'Settings': 'Settings',
     'Profile Saya': 'My Profile',
     'Login': 'Login',
     'SignUp': 'Sign Up',
@@ -232,6 +276,51 @@ const translations: Record<Language, Translations> = {
     'Add': 'Add',
   },
   id: {
+    'Total Cameras': 'Total Kamera',
+    'Live Streaming': 'Siaran Langsung',
+    'Recording': 'Sedang Merekam',
+    'Offline': 'Offline',
+    'View All Vehicle': 'Lihat Semua Kendaraan',
+    
+    'Settings': 'Pengaturan',
+    'Role & Permission Management': 'Manajemen Role & Hak Akses',
+    'Edit Hak Akses': 'Edit Hak Akses',
+    'Multi-Factor Authentication (MFA)': 'Autentikasi Multi-Faktor (MFA)',
+    'Wajib untuk Admin & Kepala Dinas': 'Wajib untuk Admin & Kepala Dinas',
+    'Vehicle Threshold Settings': 'Pengaturan Ambang Batas Kendaraan',
+    'Fuel Low Alert': 'Peringatan BBM Rendah',
+    'Max Speed Limit': 'Batas Kecepatan Maksimal',
+    'Service Interval': 'Interval Servis',
+    'Notification Channels': 'Saluran Notifikasi',
+    'Push Notification (App)': 'Notifikasi Push (Aplikasi)',
+    'Email': 'Email',
+    'SMS (Critical Only)': 'SMS (Khusus Kritis)',
+    'QR Code Management': 'Manajemen Kode QR',
+    'Generate QR Baru (100 unit)': 'Generate QR Baru (100 unit)',
+    'Download Semua QR (PDF)': 'Download Semua QR (PDF)',
+    'Backup & Security Summary': 'Ringkasan Backup & Keamanan',
+    'Uptime Bulan Ini': 'Uptime Bulan Ini',
+    'Daily': 'Harian',
+    'Encrypted Backup': 'Backup Terenkripsi',
+    'Data Encryption': 'Enkripsi Data',
+    'Lokasi': 'Lokasi',
+    'Cloud + On-Premise': 'Cloud + On-Premise',
+
+    'Audio/Video': 'Audio/Video Monitoring',
+    'Lihat Semua Kendaraan': 'View All Vehicles',
+    'Total Kamera': 'Total Cameras',
+    'Live Streaming': 'Live Streaming',
+    'Sedang Merekam': 'Recording',
+    'Cari plat nomor atau tipe kamera...': 'Search license plate or camera type...',
+    'Semua': 'All',
+    'Live': 'Live',
+    'Menampilkan': 'Showing',
+    'dari': 'of',
+    'kamera': 'cameras',
+    'kendaraan terdaftar': 'registered vehicles',
+    'Terakhir aktif': 'Last seen',
+    'Daftar Kendaraan': 'Vehicle List',
+    
     'Emergency / Accident Alert': 'Peringatan Darurat / Kecelakaan',
     'ACTIVE EMERGENCY ALERT!': 'PERINGATAN DARURAT AKTIF!',
     'Vehicle detected in accident': 'Kendaraan terdeteksi mengalami kecelakaan',
@@ -531,6 +620,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+
 // ==================== MAIN DASHBOARD ====================
 function Dashboard() {
   const [activePage, setActivePage] = useState('map');
@@ -593,7 +683,7 @@ function Dashboard() {
       case 'settings':
         return <SettingsPage />;
       case 'login':
-      return <Login onNavigateToRegister={() => setActivePage('register')} />;
+      return <Login activePage={() => setActivePage('assets')} onNavigateToRegister={() => setActivePage('register')} />;
       case 'register':
         return <Signup onNavigateToLogin={() => setActivePage('login')} />;
       default:
@@ -631,7 +721,7 @@ function Dashboard() {
 
           <div className="flex items-center space-x-1">
             {/* Language */}
-            <div className="relative z-[44]">
+            <div className="relative z-[4499999]">
               <button onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                 className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition text-sm font-medium">
                 <Globe className="w-5 h-5" />
@@ -679,9 +769,11 @@ function Dashboard() {
                       </button>
                     </div>
                     <div className="border-t pt-1">
-                      <button className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 flex items-center gap-3">
+                      <button onClick={() => setActivePage('login')} className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 flex items-center gap-3">
                         <LogOut className="w-4 h-4" /> {t('Keluar')}
                       </button>
+                      {/* <Link to='/login'>
+                      </Link> */}
                     </div>
                   </div>
                 </>

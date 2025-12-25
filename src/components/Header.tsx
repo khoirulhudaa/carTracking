@@ -1,5 +1,6 @@
 import { Bell, ChevronDown, Filter, LogOut, Search, Settings, User } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -19,6 +20,8 @@ export default function Header() {
       .toUpperCase()
       .slice(0, 2);
   };
+
+  const navigate = useNavigate()
 
   return (
     <header className="bg-white border-b border-gray-200">
@@ -134,9 +137,7 @@ export default function Header() {
 
                   <div className="border-t border-gray-100 pt-1">
                     <button
-                      onClick={() => {
-                        alert('Logout berhasil!');
-                      }}
+                      onClick={() => navigate('/login')}
                       className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition font-medium"
                     >
                       <LogOut className="w-4 h-4" />
