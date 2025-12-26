@@ -80,7 +80,7 @@
                   <p className="text-sm text-gray-600">{t('Total Trips')}</p>
                   <p className="text-3xl font-bold text-gray-900 mt-2">{stats.total}</p>
                   <p className="text-xs text-green-600 mt-2 flex items-center gap-1">
-                    <TrendingUp className="w-3 h-3" /> +23% this week
+                    <TrendingUp className="w-3 h-3" /> +21% this week
                   </p>
                 </div>
                 <div className="p-4 bg-blue-100 rounded-xl"><Truck className="w-8 h-8 text-blue-600" /></div>
