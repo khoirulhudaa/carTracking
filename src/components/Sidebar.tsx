@@ -47,13 +47,16 @@ function Sidebar({ activePage, onPageChange }: SidebarProps) {
   const lastEnabledIndex = menuItems.findIndex(i => i.id === 'settings');
 
   return (
-    <aside className="w-full md:w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">
+    <aside className="w-full md:w-[21vw] h-screen bg-white border-r border-gray-200 overflow-y-auto">
       <div className="md:p-6 sticky top-0 bg-white z-10 md:border-b">
-        <div className="hidden md:flex items-center space-x-3">
+        <div className="hidden md:flex items-center gap-3">
           <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
             <Car className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold text-gray-800">LINTAS</span>
+          <div className='flex flex-col relative top-[-2px]'>
+            <span className="text-2xl font-bold text-gray-800">LINTAS</span>
+            <small className='w-max text-[9px] text-gray-800'>Lacak Informasi Transportasi Aset Sistem</small>
+          </div>
         </div>
       </div>
 

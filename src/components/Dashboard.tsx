@@ -29,6 +29,7 @@ import Tools from './Tools';
 import TrackingMapView from './trackingMapView';
 import Trips from './Trips';
 import VehicleProfile from './VehicleProfile';
+import AccountProfile from './profile';
 
 // ==================== i18n SYSTEM ====================
 type Language = 'id' | 'en';
@@ -682,6 +683,8 @@ function Dashboard() {
         return <NotificationCenter />;
       case 'settings':
         return <SettingsPage />;
+      case 'profile':
+        return <AccountProfile />;
       case 'login':
       return <Login activePage={() => setActivePage('assets')} onNavigateToRegister={() => setActivePage('register')} />;
       case 'register':
@@ -716,7 +719,7 @@ function Dashboard() {
         <div className="px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4 flex-1">
             <button onClick={onMobileMenuToggle} className="lg:hidden"><Menu className="w-6 h-6" /></button>
-            <h1 className="text-lg sm:text-xl font-semibold truncate">{currentTitle}</h1>
+            {/* <h1 className="text-md md:text-xl font-semibold truncate">{currentTitle}</h1> */}
           </div>
 
           <div className="flex items-center space-x-1">
@@ -764,7 +767,7 @@ function Dashboard() {
                   <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border py-2 z-50">
                     <div className="px-4 py-3 border-b"><p className="font-semibold">{user.name}</p><p className="text-xs text-gray-500">{user.email}</p></div>
                     <div className="py-1">
-                      <button className="w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 flex items-center gap-3">
+                      <button onClick={() => setActivePage('profile')} className="w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 flex items-center gap-3">
                         <User className="w-4 h-4" /> {t('Profile Saya')}
                       </button>
                     </div>
@@ -795,13 +798,16 @@ function Dashboard() {
             {mobileMenuOpen && (
               <div className="fixed inset-0 z-[99999999999999999999999999] lg:hidden">
                 <div className="absolute inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
-                <div className="absolute left-0 top-0 h-full w-[80vw] bg-white shadow-xl">
+                <div className="absolute left-0 top-0 h-full w-[100vw] bg-white shadow-xl">
                   <div className="flex items-center justify-between p-6 border-b">
                     <div className="flex items-center space-x-2">
                       <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
                         <Car className="w-5 h-5 text-white" />
                       </div>
-                      <span className="text-xl font-bold">LINTAS</span>
+                      <div className='flex flex-col relative top-[-2px]'>
+                        <span className="text-xl font-bold text-gray-800">LINTAS</span>
+                        <small className='w-max text-[9px] text-gray-800'>Lacak Informasi Transportasi Aset Sistem</small>
+                      </div>
                     </div>
                     <button onClick={() => setMobileMenuOpen(false)}><X className="w-6 h-6" /></button>
                   </div>
